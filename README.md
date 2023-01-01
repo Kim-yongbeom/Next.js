@@ -1,1 +1,1 @@
-# java_practice
+# Next.js
