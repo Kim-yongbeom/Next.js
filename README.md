@@ -1,50 +1,19 @@
 # Next.js
 
-## SPA란?
+## SPA vs MPA
 ```
 https://github.com/Kim-yongbeom/Vanilla_JS/tree/main/SPA
 ```
-```
-SPA는 'Single Page Application'의 약자로 단일 페이지로 구성된 웹 애플리케이션을 말한다.
-SPA가 등장하기 전 웹 애플리케이션을 구성하던 방식인 서버 사이드 렌더링(SSR)의 경우,
-화면에 보여질 리소스를 서버로 요청하고, 서버로 부터 받아온 리소스를 렌더링 했다.
 
-하지만 SPA의 경우 렌더링의 역할을 서버에게 넘기지 않고 브라우저에서 처리하는 방식이다.
-웹 애플리케이션에 필요한 모든 정적 리소스(HTML, CSS, JavaScript)를 최초에 한번 다운로드 하고,
-이후 새로운 페이지 요청 시 페이지 갱신에 필요한 데이터만을 전달받아 페이지를 갱신하게 된다.
-```
+## Next.js 란?
+- 대표적인 SSR(서버 사이드 랜더링) React 프레임워크
+- SEO(검색 엔진 최적화)
+- 쉬운 배포
 
-## SPA vs MPA
+## Next.js 환경설정(버전 크게 상관없음)
+- node -v : 16.17.1
+- npm -v : 8.15.0
+- yarn -v : 1.22.19
 
-- SPA(Single Page Application)는 한 개(Single)의 Page로 구성된 Application이다.
-- MPA(Multiple Page Application)는 여러 개(Single)의 Page로 구성된 Application이다.
-- MPA는 새로운 페이지를 요청할 때마다 정적 리소스가 다운로드된다. 매번 전체 페이지가 다시 렌더링 된다.
-- 반면 SPA는 웹 에플리케이션에 필요한 모든 정적 리소스를 최초 한 번에 다운로드한다.
-- 그 이후 새로운 페이지 요청이 있을 때, 페이지 갱신에 필요한 데이터만 전달 받아서 페이지를 갱신한다.
-- 그래서 SPA를 CSR(Client Side Rendering) 방식으로 렌더링한다고 말한다.
-- 그래서 MPA를 SSR(Server Side Rendering) 방식으로 렌더링한다고 말한다.
-
-## SPA 장점
-
-- 전체를 렌더하지 않고 변경되는 부분만 갱신하기 때문에 `전체적인 트래픽 감소`와 `렌더링에서 좋은 효율`을 가진다.
-- 새롭게 갱신된 부분만 렌더하기 때문에 새로고침이 발생하지 않아 깜빡임 없이 `빠른 화면 이동`이 가능하다.
-
-## SPA 단점
-
-- 웹 애플리케이션에 필요한 정적 리소스를 한번에 다운로드 하기 때문에 초기 구동 속도가 느리다.
-- 검색엔진 최적화(SEO)가 어렵다.
-- `SPA가 SEO에 부적합한 이유` 검색 엔진이 크롤링할 때 JavaScript를 실행하지 않고 어플리케이션이 로드되기 전의 빈 상태의 코드를 크롤링하기 때문에 인덱싱이 제대로 이루어지지 않는다.
-
-## MPA 장점
-
-- SEO가 유리하다 (완성된 형태의 HTML파일을 서버로 부터 전달받아 유리하다.)
-- 첫 로딩이 짧다 (서버에서 이미 렌더링해 가져오기 때문에, 그러나 클라이언트가 JS파일을 모두 다운받기전에는 기능은 동작하지 않는다.)
-
-## MPA 단점
-
-- 페이지 요청마다 새로고침 발생
-- 서버 렌더링에 따른 부하
-
-## Next.js
-
-- React(SPA)를 사용할 때 쉽게 SSR을 편하게 해준다.
+## 연습 환경
+- npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
