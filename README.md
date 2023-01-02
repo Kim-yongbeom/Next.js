@@ -1,7 +1,9 @@
 # Next.js
 
 ## SPA란?
-
+```
+https://github.com/Kim-yongbeom/Vanilla_JS/tree/main/SPA
+```
 ```
 SPA는 'Single Page Application'의 약자로 단일 페이지로 구성된 웹 애플리케이션을 말한다.
 SPA가 등장하기 전 웹 애플리케이션을 구성하던 방식인 서버 사이드 렌더링(SSR)의 경우,
