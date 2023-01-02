@@ -10,10 +10,15 @@ https://github.com/Kim-yongbeom/Vanilla_JS/tree/main/SPA
 - SEO(검색 엔진 최적화)
 - 쉬운 배포
 
-## Next.js 환경설정(버전 크게 상관없음)
+## Next.js 실행 버전(버전 크게 상관없음)
 - node -v : 16.17.1
 - npm -v : 8.15.0
 - yarn -v : 1.22.19
 
-## 연습 환경
+## Next.js 연습
 - npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
+- cd nextjs-blog
+- npm run dev
+- yarn 설치
+  - yarn
+  - yarn dev
