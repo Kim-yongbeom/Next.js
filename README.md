@@ -22,4 +22,3 @@ https://github.com/Kim-yongbeom/Vanilla_JS/tree/main/SPA
 - yarn 설치
   - yarn
   - yarn dev
-- (Next.js 클론 후 위 npx설치 하니까 commit 무한 로딩 걸림)
