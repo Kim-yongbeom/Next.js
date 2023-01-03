@@ -22,3 +22,4 @@ https://github.com/Kim-yongbeom/Vanilla_JS/tree/main/SPA
 - yarn 설치
   - yarn
   - yarn dev
+- https://velog.io/@repedore/create-react-app-%ED%9B%84-github-%EC%97%B0%EB%8F%99
