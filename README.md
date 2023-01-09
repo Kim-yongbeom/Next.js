@@ -14,6 +14,3 @@ https://github.com/Kim-yongbeom/Vanilla_JS/tree/main/SPA
 - node -v : 16.17.1
 - npm -v : 8.15.0
 - yarn -v : 1.22.19
-
-### getServerSidePrps
-- 서버에서 데이터를 가져오고 화면에 그려줌
