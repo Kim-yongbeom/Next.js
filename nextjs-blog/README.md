@@ -14,7 +14,9 @@ main 태그 안 내용은 <h1>만 남김
 ## 2
 ```
 getServerSidePrps
-- 서버에서 데이터를 가져오고 화면에 그려줌
+- 해당 컴포넌트를 사용자가 요청하면 getServerSideProps 를 먼저 실행후 서버에서 데이터를 가져오고 화면에 그려줌
+- 컴포넌트에 data를 props로 전달하여 렌더링 할 수 있다
+- getServerSideProps 는 계속 데이터가 바뀌어야하는 페이지의 경우 사용한다
 
 export async function getServerSideProps(){
   console.log('server')
