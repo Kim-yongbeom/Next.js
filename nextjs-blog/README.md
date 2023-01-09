@@ -13,6 +13,9 @@ main 태그 안 내용은 <h1>만 남김
 
 ## 2
 ```
+getServerSidePrps
+- 서버에서 데이터를 가져오고 화면에 그려줌
+
 export async function getServerSideProps(){
   console.log('server')
   return {
