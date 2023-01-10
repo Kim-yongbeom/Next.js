@@ -31,6 +31,7 @@ export async function getServerSideProps(){
 export default function Home()에 {time} props 넣어준뒤
 
 main 태그 내용을 바꿔줌
+새로고침을 할 때마다 터미널에 server 스트링이 찍힘
 
 <main>
 <h1 className={styles.title}>
@@ -39,4 +40,14 @@ main 태그 내용을 바꿔줌
 </main>
 ```
 
-새로고침을 할 때마다 터미널에 server 스트링이 찍힘
+## 4
+```
+Link는 next에서 routing 제공해주는 태그
+
+<main>
+    <h1 className={styles.title}>
+      {time}
+    </h1>
+    <h1><Link href="/csr">CSR 로</Link></h1>
+</main>
+```
