@@ -51,3 +51,11 @@ Link는 next에서 routing 제공해주는 태그
     <h1><Link href="/csr">CSR 로</Link></h1>
 </main>
 ```
+
+## 5
+```
+CSR을 만드는 것은 일반 React와 똑같이 만들면 된다.
+
+index.js를 복사해서 같은 경로에 붙여넣은 후 csr.js로 rename
+getServerSideProps 함수를 빼준다.
+```
