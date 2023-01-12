@@ -23,6 +23,7 @@ export default function Home({time}) {
           {time}
         </h1>
         <h1><Link href="/csr">CSR 로</Link></h1>
+        <h1><Link href="/ssg">SSG 로</Link></h1>
       </main>
 
       <footer>
