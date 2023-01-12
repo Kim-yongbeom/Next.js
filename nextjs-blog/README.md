@@ -1,5 +1,3 @@
-https://chaeyoung2.tistory.com/53
-
 ## 1
 ```
 main 태그 안 내용은 <h1>만 남김
@@ -57,5 +55,20 @@ Link는 next에서 routing 제공해주는 태그
 CSR을 만드는 것은 일반 React와 똑같이 만들면 된다.
 
 index.js를 복사해서 같은 경로에 붙여넣은 후 csr.js로 rename
-getServerSideProps 함수를 빼준다.
+getServerSideProps 함수를 삭제 해준다.
+```
+
+## SSG (Static-Site Generation)
+- 정적인 사이트를 데이터를 가져와서 그려둔다.
+
+## 6
+```
+getStaticProps을 사용해서 SSG를 구현한다.
+
+SSG는 yarn dev 즉 개발서버에서는 동작하지 않는다.
+SSG가 SSR 처럼 동작함
+
+그래서 yarn build 후 yarn start 해야함
+
+yarn build 했을 때 시간을 SSG 페이지에서 그려둔다.
 ```
