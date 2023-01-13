@@ -9,7 +9,7 @@ main 태그 안 내용은 <h1>만 남김
 </main>
 ```
 
-## SSR(server side render)
+## SSR(server side rendering)
 - 서버에서 데이터를 가져오고 화면에 
 
 ## 2
@@ -52,6 +52,10 @@ Link는 next에서 routing 제공해주는 태그
     <h1><Link href="/csr">CSR 로</Link></h1>
 </main>
 ```
+
+## CSR (Client Side rendering)
+- 클라이언트 측에서 최초에 1번 서버에서 전체 페이지를 로딩하여 보여준다. 
+- 그 이후에는 사용자의 요청이 올 때마다, 자원을 서버에서 제공한 후 클라이언트가 해석하고 렌더링 하는 방식이다.
 
 ## 5
 ```
