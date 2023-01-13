@@ -1,6 +1,8 @@
 # Next.js
 - 대표적인 SSR(서버 사이드 랜더링) React 프레임워크
-- SEO(검색 엔진 최적화)
+- SEO(Search Engine Optimization)를 위한 SSR(Server-Side Rendering)을 가능하게 함
+- SSR 뿐만 아니라 정적 사이트 생성 SSG(Static-Site Generate)도 가능함
+- SSR과 CSR도 혼합하여 사용 가능
 - 쉬운 배포
 
 ## SPA vs MPA
