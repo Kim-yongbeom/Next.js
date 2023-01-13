@@ -44,6 +44,9 @@ main 태그 내용을 바꿔줌
 ## 4
 ```
 Link는 next에서 routing 제공해주는 태그
+파일만 만들어도 route가 설정됨
+
+import Link from "next/link"
 
 <main>
     <h1 className={styles.title}>
