@@ -16,10 +16,11 @@ MPA는 페이지를 이동할 때 마다 서버에 요청하고 받아오는 방
 하지만 같은 SSR이라도 next.js는 프리렌더링(pre-rendering) 기능을 제공한다
 사전에 미리 html을 렌더링 한다는 뜻으로, html을 미리 생성하고 최소한의js를 연결시킨 후 클라이언트에서 요청이 들어오면 해당 html을 로드하면서 나머지js를 불러와 화면에 렌더링 시켜준다
 
-next.js는 주로 두가지 프리렌더링 방법을 제공한다
+next.js는 주로 세가지 프리렌더링 방법을 제공한다
 
-- Server-side rendering: SSR 
-- Static site rendering: SSG
+- Server Side Rendering: SSR 
+- Static Site Rendering: SSG
+- Incremental Static Regeneration: ISR
 
 next.js의 프리렌더링 으로 각 page에 getServerSideProps ,getStaticProps, getStaticPaths 를 사용해서 데이터를 가져옴
 ```
