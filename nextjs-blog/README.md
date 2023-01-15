@@ -73,13 +73,28 @@ getServerSideProps 함수를 삭제 해준다.
 
 ## 6
 ```
-getStaticProps을 사용해서 SSG를 구현한다.
+getStaticProps를 사용해서 SSG를 구현한다.
 SSG를 구현할 때 정적인 페이지에 동적 라우팅을 사용하려면 getStaticPaths를 사용해야 한다.
 
 SSG는 yarn dev 즉 개발서버에서는 동작하지 않는다.
 SSG가 SSR 처럼 동작함
 
-그래서 yarn build 후 yarn start 해야함
+그래서 ssg.js 파일을 만들고 routing 설정한 후에 yarn build 후 yarn start 해야함
 
 yarn build 했을 때 시간을 SSG 페이지에서 그려둔다.
+```
+
+## ISR (Incremental Static Regeneration)
+- 증분(점점 증가하는) 정적 사이트를 재생성
+- 특정 주기로 정적인 사이트를 데이터를 가져와서 다시 그려둔다.
+
+## 7
+```
+getStaticProps를 사용해서 ISR을 구현한다. 하지만  SSG와는 다르게 revalidate를 return 해줘야한다.
+
+isr.js 파일을 만들고 routing 설정한 후에 yarn build 후 yarn start 해야함
+
+만약 revalidate: 1 이면 1초 간격으로 다시 패칭한다는 뜻이다.
+
+SSG의 장점과 SSR의 장점을 적절하게 사용할 수 있다.
 ```
