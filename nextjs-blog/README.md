@@ -75,6 +75,8 @@ getServerSideProps 함수를 삭제 해준다.
 ```
 getStaticProps를 사용해서 SSG를 구현한다.
 SSG를 구현할 때 정적인 페이지에 동적 라우팅을 사용하려면 getStaticPaths를 사용해야 한다.
+- Page의 내용물이 외부 데이터에 의존적인 상황 (getStaticProps만 가지고도 가능)
+- Page Paths 까지 외부 데이터에 의존적인 상황 (getStaticPaths도 함께 활용해야 가능)
 
 SSG는 yarn dev 즉 개발서버에서는 동작하지 않는다.
 SSG가 SSR 처럼 동작함
