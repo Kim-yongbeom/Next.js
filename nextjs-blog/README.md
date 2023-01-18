@@ -108,5 +108,24 @@ SSG의 장점과 SSR의 장점을 적절하게 사용할 수 있다.
 ## 8
 ```
 root에서 components 폴더 -> Layout.js 생성 (pages 가 아니라 components 라서 SSR 불가능)
-pages 폴더에서 _app.js 파일 생성
+
+Layout.js 에서는 children을 props로 받아준다
+
+pages 폴더에서 _app.js 파일 생성 후
+import Layout from "../components/Layout";
+
+export default function App({Component, pageProps}) {
+    return(
+        <Layout>
+            <Component  {...pageProps}/>
+        </Layout>
+    )
+}
+
+코드를 작성하고 yarn dev를 사용해 페이지를 들어가게 되면 footer가 2개가 된다.
+현재 공통된 부분을 지워주지 않아서 그러므로 
+
+index.js에서 
+
+<h1></h1> 태그 부분만 남기고 모두 제거
 ```
