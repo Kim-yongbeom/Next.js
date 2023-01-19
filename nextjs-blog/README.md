@@ -129,3 +129,54 @@ index.js에서
 
 <h1></h1> 태그 부분만 남기고 모두 제거
 ```
+
+## SubLayout
+- 세부적인 레이아웃을 쓰는 경우
+
+## 9
+```
+components 폴더 안에 SubLayout.js를 만든다
+
+import Link from 'next/link'
+import styles from '../styles/Home.module.css';
+
+export default function SubLayout({children}) {
+  return (
+    <div>
+      <h1>
+        <Link href="/">
+          Home으로
+        </Link>
+      </h1>
+      {children}
+    </div>
+  )
+}
+
+코드 작성 후
+
+SubLayout을 적용해 주고 싶은 파일(여기선 csr.js)에 
+
+CSR.getLayout = function getLayout(page) {
+  return (
+    <Layout>
+      <SubLayout>{page}</SubLayout>
+    </Layout>
+  )
+}
+
+적용
+
+그리고 
+
+_app.js에서 컴포넌트가 getLayout을 가지고 있는것에만 실행하겠다는 뜻으로 
+// return(
+//     <Layout>
+//         <Component  {...pageProps}/>
+//     </Layout>
+// )
+const getLayout = Component.getLayout || ((page)=><Layout>{page}</Layout>)
+return getLayout(<Component{...pageProps}/>)
+
+기존 코드를 주석하고 const getLayout을 추가해준다.
+```
