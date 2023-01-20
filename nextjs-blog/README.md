@@ -1,6 +1,6 @@
 ## 1
 ```
-main 태그 안 내용은 <h1>만 남김
+index.js 에서 main 태그 안 내용은 <h1>만 남김
 
 <main>
 <h1 className={styles.title}>
@@ -10,7 +10,7 @@ main 태그 안 내용은 <h1>만 남김
 ```
 
 ## SSR(server side rendering)
-- 서버에서 데이터를 가져오고 화면에 
+- 서버에서 데이터를 가져오고 화면에 그려준다.
 
 ## 2
 ```
@@ -133,6 +133,7 @@ index.js에서
 ## SubLayout
 - 세부적인 레이아웃을 쓰는 경우
 - 좀 더 찾아보기
+- CSR.getLayout 이게 CSR 파일이라 그런건지 체크 파일명 때문인가?
 
 ## 9
 ```
