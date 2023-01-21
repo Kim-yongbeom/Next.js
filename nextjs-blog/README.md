@@ -1,3 +1,8 @@
+## Next.js 프로젝트 띄워보기
+- node 설치
+- yarn 설치 (npm install -g yarn)
+- npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
+
 ## 1
 ```
 index.js 에서 main 태그 안 내용은 <h1>만 남김
