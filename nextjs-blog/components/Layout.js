@@ -5,7 +5,7 @@ export default function Layout({children}) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Next.js 연습</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
