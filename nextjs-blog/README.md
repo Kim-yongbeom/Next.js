@@ -131,9 +131,7 @@ index.js에서
 ```
 
 ## SubLayout
-- 세부적인 레이아웃을 쓰는 경우
-- 좀 더 찾아보기
-- CSR.getLayout 이게 CSR 파일이라 그런건지 체크 파일명 때문인가?
+- 세부적인 레이아웃을 쓰는 경우 사용
 
 ## 9
 ```
@@ -159,6 +157,7 @@ export default function SubLayout({children}) {
 
 SubLayout을 적용해 주고 싶은 파일(여기선 csr.js)에 
 
+csr.js의 함수명이 CSR이므로
 CSR.getLayout = function getLayout(page) {
   return (
     <Layout>
