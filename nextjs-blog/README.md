@@ -1,6 +1,6 @@
 ## 1
 ```
-main 태그 안 내용은 <h1>만 남김
+index.js 에서 main 태그 안 내용은 <h1>만 남김
 
 <main>
 <h1 className={styles.title}>
@@ -10,7 +10,7 @@ main 태그 안 내용은 <h1>만 남김
 ```
 
 ## SSR(server side rendering)
-- 서버에서 데이터를 가져오고 화면에 
+- 서버에서 데이터를 가져오고 화면에 그려준다.
 
 ## 2
 ```
@@ -131,7 +131,7 @@ index.js에서
 ```
 
 ## SubLayout
-- 세부적인 레이아웃을 쓰는 경우
+- 세부적인 레이아웃을 쓰는 경우 사용
 
 ## 9
 ```
@@ -157,6 +157,7 @@ export default function SubLayout({children}) {
 
 SubLayout을 적용해 주고 싶은 파일(여기선 csr.js)에 
 
+csr.js의 함수명이 CSR이므로
 CSR.getLayout = function getLayout(page) {
   return (
     <Layout>
