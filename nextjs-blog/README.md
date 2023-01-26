@@ -185,4 +185,6 @@ const getLayout = Component.getLayout || ((page)=><Layout>{page}</Layout>)
 return getLayout(<Component{...pageProps}/>)
 
 기존 코드를 주석하고 const getLayout을 추가해준다.
+
+ssg.js, isr.js 에도 그대로 적용
 ```
