@@ -1,29 +1,5 @@
-# Image Component Example
-
-This example shows how to use the [Image Component in Next.js](https://nextjs.org/docs/api-reference/next/image) serve optimized, responsive images.
-
-The index page ([`pages/index.tsx`](pages/index.tsx)) has a couple images, one internal image and one external image. In [`next.config.js`](next.config.js), the `domains` property is used to enable external images. The other pages demonstrate the different layouts. Run or deploy the app to see how it works!
-
-## Live demo
-
-[https://image-component.nextjs.gallery](https://image-component.nextjs.gallery)
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/image-component)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/image-component&project-name=image-component&repository-name=image-component)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example image-component image-app
-# or
-yarn create next-app --example image-component image-app
-# or
-pnpm create next-app --example image-component image-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Next.js 에서 제공하는 Image 컴포넌트 기능
+- lazy loading (로딩 안된 이미지는 블러 처리)
+- 이미지 사이즈 최적화
+  - 웹 -> 네트워크 탭 -> 프리뷰 에서 이미지의 용량이 15kB 인걸 확인 할 수 있다(뷰 포트 크기에 따라 이미지의 용량이 달라짐)
+- 레이아웃 안정성 (이미지 로드 전에 placeholder를 제공해서 CLS(Cumulative Layout Shift) 방지)
