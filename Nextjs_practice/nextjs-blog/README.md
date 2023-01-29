@@ -188,3 +188,13 @@ return getLayout(<Component{...pageProps}/>)
 
 ssg.js, isr.js 에도 그대로 적용
 ```
+
+## 10
+```
+기본 라우팅
+
+root 폴더에 src 를 만들고 components폴더를 붙여넣는다 (기존에 했던 경로들 수정해야함)
+
+
+
+```
