@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Layout from '../components/Layout';
-import SubLayout from '../components/SubLayout';
-import styles from '../styles/Home.module.css';
+import Layout from '../src/components/Layout';
+import SubLayout from '../src/components/SubLayout';
+import styles from '../styles/Home.module.css'
 
 export default function CSR() {
   const [time, setTime] = useState()

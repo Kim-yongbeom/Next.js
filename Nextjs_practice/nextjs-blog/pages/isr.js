@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Layout from '../components/Layout';
-import SubLayout from '../components/SubLayout';
+import Layout from '../src/components/Layout';
+import SubLayout from '../src/components/SubLayout';
 import styles from '../styles/Home.module.css';
 
 export async function getStaticProps(){
