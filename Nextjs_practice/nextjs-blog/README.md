@@ -196,7 +196,7 @@ Next.js 의 라우팅은 file-system기반(pages/ 혹은 src/pages/  다른 폴�
 root 폴더에 src 를 만들고 components폴더를 붙여넣는다 (기존에 했던 경로들 수정해야함)
 
 만약 1. root폴더에 pages 폴더에 index.js가 있고
-     2. root폴더에 src 폴더에 pages 폴더에 index.js 가 있다면 
+     2. root폴더에 src 폴더에 pages 폴더에 index.js 가 동시에 있다면 
      
-     1번 항목이 실행이 되는것을 확인할 수 있다.
+     1번 항목이 실행이 되는것을 확인할 수 있다. 그리고 2번의 src 폴더의 pages는 404에러가 난다.
 ```
