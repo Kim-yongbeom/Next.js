@@ -1,24 +1,21 @@
 import Head from 'next/head'
-import Layout from '../components/Layout';
-import SubLayout from '../components/SubLayout';
-import styles from '../../styles/Home.module.css';
+import Layout from '../components/Layout'
+import SubLayout from '../components/SubLayout'
+import styles from '../../styles/Home.module.css'
 
-export async function getStaticProps(){
+export async function getStaticProps() {
   console.log('server')
   return {
-    props: {time: new Date().toISOString()},
+    props: { time: new Date().toISOString() },
     revalidate: 1,
   }
 }
 
-export default function ISR({time}) {
-
+export default function ISR({ time }) {
   return (
-      <>
-        <h1 className={styles.title}>
-          {time}
-        </h1>
-      </>
+    <>
+      <h1 className={styles.title}>{time}</h1>
+    </>
   )
 }
 

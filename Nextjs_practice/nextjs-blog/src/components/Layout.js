@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import styles from '../../styles/Home.module.css';
+import styles from '../../styles/Home.module.css'
 
-export default function Layout({children}) {
+export default function Layout({ children }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -9,9 +9,7 @@ export default function Layout({children}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
 
       <footer>
         <a
