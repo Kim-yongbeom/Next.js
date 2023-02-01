@@ -250,9 +250,9 @@ pages 폴더 안에 product 폴더를 생성 -> first-item.js 생성
 
 -------------------------------------------------------
 import { useEffect, useState } from 'react'
-import Layout from '../components/Layout'
-import SubLayout from '../components/SubLayout'
-import styles from '../../styles/Home.module.css'
+import Layout from '../../components/Layout'
+import SubLayout from '../../components/SubLayout'
+import styles from '../../../styles/Home.module.css'
 
 export default function FirstItem() {
 
@@ -273,4 +273,23 @@ FirstItem.getLayout = function getLayout(page) {
 -------------------------------------------------------
 코드 입력
 
+만약 경로 설정이 귀찮다면
+root 폴더에 jsconfig.json 파일을 만들어 준 뒤
+-------------------------------------------------------
+{
+    "compilerOptions": {
+        "baseUrl": "src"
+    }
+}
+-------------------------------------------------------
+를 넣게 되면 
+
+FirstItem 컴포넌트의 경로 코드
+-------------------------------------------------------
+import Layout from 'components/Layout'
+import SubLayout from 'components/SubLayout'
+import styles from '../../../styles/Home.module.css'
+-------------------------------------------------------
+src가 루트가 되어 바로 설정할 수 있게 된다.
+styles 폴더는 src 밖에 있어 따로 설정했다.
 ```
