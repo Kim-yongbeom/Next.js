@@ -288,8 +288,21 @@ FirstItem 컴포넌트의 경로 코드
 -------------------------------------------------------
 import Layout from 'components/Layout'
 import SubLayout from 'components/SubLayout'
-import styles from '../../../styles/Home.module.css'
+import styles from '/styles/Home.module.css'
 -------------------------------------------------------
 src가 루트가 되어 바로 설정할 수 있게 된다.
-styles 폴더는 src 밖에 있어 따로 설정했다.
+styles 폴더는 src 밖에 있어 '/' 추가. (왜 / 만 붙이면 되는지는 잘 모르겠다. 같은 경로면 ./ 해야 하는것 아닌가???)
+```
+
+## 12
+```
+pages 폴더 안에 settings 폴더를 생성 -> my 폴더 생성 -> info.js 생성
+first-item.js 와 똑같은 코드 작성 -> 컴포넌트 이름만 변경
+
+웹에서 확인하고 싶다면 
+http://localhost:3000/settings/my/info 파일 경로를 넣으면 된다.
+
+http://localhost:3000/settings
+http://localhost:3000/settings/my 
+위 두개의 경로에 접근하고 싶다면 settings 폴더나 my 폴더에 index.js를 추가해줘야 함
 ```
