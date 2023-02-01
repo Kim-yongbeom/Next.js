@@ -25,12 +25,13 @@ yarn prettier-fix 입력하면 파일들 정렬!!
 
 ```
 index.js 에서 main 태그 안 내용은 <h1>만 남김
-
+-------------------------------------------------------
 <main>
 <h1 className={styles.title}>
     Welcome to the <a href="https://nextjs.org">Next.js!</a>
 </h1>
 </main>
+-------------------------------------------------------
 ```
 
 ## SSR(server side rendering)
@@ -44,13 +45,14 @@ getServerSidePrps 를 사용해서 SSR을 구현한다.
 - 해당 컴포넌트를 사용자가 요청하면 getServerSideProps 를 먼저 실행후 서버에서 데이터를 가져오고 화면에 그려줌
 - 컴포넌트에 data를 props로 전달하여 렌더링 할 수 있다
 - getServerSideProps 는 계속 데이터가 바뀌어야하는 페이지의 경우 사용한다
-
+-------------------------------------------------------
 export async function getServerSideProps(){
   console.log('server')
   return {
     props: {time: new Date().toISOString()}
   }
 }
+-------------------------------------------------------
 ```
 
 ## 3
@@ -60,12 +62,13 @@ export default function Home()에 {time} props 넣어준뒤
 
 main 태그 내용을 바꿔줌
 새로고침을 할 때마다 터미널에 server 스트링이 찍힘
-
+-------------------------------------------------------
 <main>
 <h1 className={styles.title}>
     {time}
 </h1>
 </main>
+-------------------------------------------------------
 ```
 
 ## 4
@@ -73,7 +76,7 @@ main 태그 내용을 바꿔줌
 ```
 Link는 next에서 routing 제공해주는 태그
 파일만 만들어도 route가 설정됨
-
+-------------------------------------------------------
 import Link from "next/link"
 
 <main>
@@ -82,6 +85,7 @@ import Link from "next/link"
     </h1>
     <h1><Link href="/csr">CSR 로</Link></h1>
 </main>
+-------------------------------------------------------
 ```
 
 ## CSR (Client Side rendering)
@@ -148,6 +152,7 @@ root에서 components 폴더 -> Layout.js 생성 (pages 가 아니라 components
 Layout.js 에서는 children을 props로 받아준다
 
 pages 폴더에서 _app.js 파일 생성 후
+-------------------------------------------------------
 import Layout from "../components/Layout";
 
 export default function App({Component, pageProps}) {
@@ -157,7 +162,7 @@ export default function App({Component, pageProps}) {
         </Layout>
     )
 }
-
+-------------------------------------------------------
 코드를 작성하고 yarn dev를 사용해 페이지를 들어가게 되면 footer가 2개가 된다.
 현재 공통된 부분을 지워주지 않아서 그러므로
 
@@ -174,7 +179,7 @@ index.js에서
 
 ```
 components 폴더 안에 SubLayout.js를 만든다
-
+-------------------------------------------------------
 import Link from 'next/link'
 import styles from '../styles/Home.module.css';
 
@@ -190,12 +195,13 @@ export default function SubLayout({children}) {
     </div>
   )
 }
-
+-------------------------------------------------------
 코드 작성 후
 
 SubLayout을 적용해 주고 싶은 파일(여기선 csr.js)에
 
 csr.js의 함수명이 CSR이므로
+-------------------------------------------------------
 CSR.getLayout = function getLayout(page) {
   return (
     <Layout>
@@ -203,12 +209,13 @@ CSR.getLayout = function getLayout(page) {
     </Layout>
   )
 }
-
+-------------------------------------------------------
 적용
 
 그리고
 
 _app.js에서 컴포넌트가 getLayout을 가지고 있는것에만 실행하겠다는 뜻으로
+-----------------------------------------------------------------------
 // return(
 //     <Layout>
 //         <Component  {...pageProps}/>
@@ -216,7 +223,7 @@ _app.js에서 컴포넌트가 getLayout을 가지고 있는것에만 실행하�
 // )
 const getLayout = Component.getLayout || ((page)=><Layout>{page}</Layout>)
 return getLayout(<Component{...pageProps}/>)
-
+-----------------------------------------------------------------------
 기존 코드를 주석하고 const getLayout을 추가해준다.
 
 ssg.js, isr.js 에도 그대로 적용
@@ -235,4 +242,67 @@ root 폴더에 src 를 만들고 components폴더 pages폴더를 붙여넣는다
      1번 항목이 실행이 되는것을 확인할 수 있다. 그리고 2번의 src 폴더의 pages는 404에러가 난다.
 
 연습 단계에서는 src 폴더의 pages를 사용한다. (각자 편할걸로 사용해라)
+```
+
+## 11
+```
+pages 폴더 안에 product 폴더를 생성 -> first-item.js 생성
+
+-------------------------------------------------------
+import { useEffect, useState } from 'react'
+import Layout from '../../components/Layout'
+import SubLayout from '../../components/SubLayout'
+import styles from '../../../styles/Home.module.css'
+
+export default function FirstItem() {
+
+  return (
+    <>
+      <h1 className={styles.title}>First Item</h1>
+    </>
+  )
+}
+
+FirstItem.getLayout = function getLayout(page) {
+  return (
+    <Layout>
+      <SubLayout>{page}</SubLayout>
+    </Layout>
+  )
+}
+-------------------------------------------------------
+코드 입력
+
+만약 경로 설정이 귀찮다면
+root 폴더에 jsconfig.json 파일을 만들어 준 뒤
+-------------------------------------------------------
+{
+    "compilerOptions": {
+        "baseUrl": "src"
+    }
+}
+-------------------------------------------------------
+를 넣게 되면 
+
+FirstItem 컴포넌트의 경로 코드
+-------------------------------------------------------
+import Layout from 'components/Layout'
+import SubLayout from 'components/SubLayout'
+import styles from '/styles/Home.module.css'
+-------------------------------------------------------
+src가 루트가 되어 바로 설정할 수 있게 된다.
+styles 폴더는 src 밖에 있어 '/' 추가. (왜 / 만 붙이면 되는지는 잘 모르겠다. 같은 경로면 ./ 해야 하는것 아닌가???)
+```
+
+## 12
+```
+pages 폴더 안에 settings 폴더를 생성 -> my 폴더 생성 -> info.js 생성
+first-item.js 와 똑같은 코드 작성 -> 컴포넌트 이름만 변경
+
+웹에서 확인하고 싶다면 
+http://localhost:3000/settings/my/info 파일 경로를 넣으면 된다.
+
+http://localhost:3000/settings
+http://localhost:3000/settings/my 
+위 두개의 경로에 접근하고 싶다면 settings 폴더나 my 폴더에 index.js를 추가해줘야 함
 ```
