@@ -306,3 +306,19 @@ http://localhost:3000/settings
 http://localhost:3000/settings/my 
 위 두개의 경로에 접근하고 싶다면 settings 폴더나 my 폴더에 index.js를 추가해줘야 함
 ```
+
+## 13
+```
+pages 폴더 안에 [slug].js를 만들게 되면 설정한 폴더명 뒤에는 아무런 값을 넣어줘도 [slug].js가 보여진다.
+
+설정한 폴더명이란 만약 category 폴더 안에 [slug].js를 만들고 http://localhost:3000/category/asfasfasf
+이런 url을 입력을 해도 [slug].js 를 보여준다.
+
+파일에만 해당되는 것이 아니라 폴더에도 사용이 가능하다.
+[username] 이라는 폴더를 만들고 ( []안에는 어떠한 텍스트를 넣어도 되지만 유의미한 텍스트를 넣는게 당연히 좋다 )
+info.js 파일을 만들게 되면
+http://localhost:3000/KIM/info 처럼 자유롭게 사용 가능하다.
+
+만약 category폴더와 [username] 폴더가 동시에 존재 하고
+http://localhost:3000/category/info 를 입력하게 되면 category 폴더의 [slug].js 파일이 보여진다. ( 명시된 폴더가 우선순위 )
+```
