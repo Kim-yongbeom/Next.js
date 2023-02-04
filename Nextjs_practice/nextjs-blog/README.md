@@ -322,3 +322,11 @@ http://localhost:3000/KIM/info 처럼 자유롭게 사용 가능하다.
 만약 category폴더와 [username] 폴더가 동시에 존재 하고
 http://localhost:3000/category/info 를 입력하게 되면 category 폴더의 [slug].js 파일이 보여진다. ( 명시된 폴더가 우선순위 )
 ```
+
+## 14
+```
+cart 폴더 안에 [...date].js 를 생성하면
+
+http://localhost:3000/cart/asd/131234
+url 처럼 cart 후에 어떠한 경로를 입력하더라도 [...date].js 가 보여지게 된다.
+```
