@@ -309,6 +309,8 @@ http://localhost:3000/settings/my
 
 ## 13
 ```
+Dynamic Routes
+
 pages 폴더 안에 [slug].js를 만들게 되면 설정한 폴더명 뒤에는 아무런 값을 넣어줘도 [slug].js가 보여진다.
 
 설정한 폴더명이란 만약 category 폴더 안에 [slug].js를 만들고 http://localhost:3000/category/asfasfasf
@@ -321,12 +323,30 @@ http://localhost:3000/KIM/info 처럼 자유롭게 사용 가능하다.
 
 만약 category폴더와 [username] 폴더가 동시에 존재 하고
 http://localhost:3000/category/info 를 입력하게 되면 category 폴더의 [slug].js 파일이 보여진다. ( 명시된 폴더가 우선순위 )
-```
 
-## 14
-```
+
 cart 폴더 안에 [...date].js 를 생성하면
 
 http://localhost:3000/cart/asd/131234
 url 처럼 cart 후에 어떠한 경로를 입력하더라도 [...date].js 가 보여지게 된다.
+```
+
+## 14
+```
+[slug].js 파일 안에
+
+-------------------------------------------
+import { useRouter } from 'next/router'
+const router = useRouter()
+const {slug} = router.query
+-------------------------------------------
+위 코드를 입력하면 slug 파일의 text값(url 정보)을 가져올 수 있다.
+
+http://localhost:3000/category/foodasfa?from=asd
+만약 위 url 의 slug 값과 query 값을 가져오고 싶다면
+const {slug, from} = router.query 을 선언하면 된다.
+
+slug == foodasfa
+from == asd 
+가 나올 것 이다.
 ```
