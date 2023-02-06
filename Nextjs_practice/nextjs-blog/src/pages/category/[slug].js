@@ -5,11 +5,11 @@ import styles from '/styles/Home.module.css'
 
 export default function CategorySlug() {
   const router = useRouter()
-  const {slug, from} = router.query
+  const {slug, from, age} = router.query
 
   return (
     <>
-      <h1 className={styles.title}>Category {slug} from {from}</h1>
+      <h1 className={styles.title}>Category {slug} from {from} {age}</h1>
     </>
   )
 }

@@ -342,11 +342,37 @@ const {slug} = router.query
 -------------------------------------------
 위 코드를 입력하면 slug 파일의 text값(url 정보)을 가져올 수 있다.
 
-http://localhost:3000/category/foodasfa?from=asd
+http://localhost:3000/category/foodasfa?from=asd&age=123
 만약 위 url 의 slug 값과 query 값을 가져오고 싶다면
-const {slug, from} = router.query 을 선언하면 된다.
+const {slug, from, age} = router.query 을 선언하면 된다.
 
 slug == foodasfa
-from == asd 
+from == asd
+age == 123
 가 나올 것 이다.
+```
+
+## 15
+```
+[username] 폴더 안에 info.js 파일을 [info.js]로 바꿔보자
+
+-------------------------------------------
+const router = useRouter()
+const {username, info} = router.query
+-------------------------------------------
+역시나 아무런 텍스트를 입력해도 잘 받아온다.
+```
+
+## 16
+```
+[...slug]에서 slug 는 배열로 받아진다.
+[...date].js 파일에서 확인 가능하다.
+
+-------------------------------------------------------------------------------
+const {date} = router.query
+
+<>
+  <h1 className={styles.title}>Cart Date Slug {JSON.stringify(date)}</h1>
+</>
+-------------------------------------------------------------------------------
 ```
