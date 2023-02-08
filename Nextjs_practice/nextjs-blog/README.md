@@ -383,8 +383,15 @@ http://localhost:3000/cart 로 접속하게 되면 404 에러가 발생한다. (
 
 routing 하는 방법
 -------------------------------------------------------------------------------
-<Link href="/cart/2023/02/07">2023년 2월 7일로</Link>
-<button onClick={()=>router.push('/cart/2023/02/01')}>2023년 2월 1일로</button>
+location.replace('url') : 로컬 state 유지 안됨 (리렌더)
+router.push(url) : 로컬 state 유지 / data fetching은 일어남
+router.push(url, as, {shallow: true}) : 로컬 state 유지 / data fetching x
 -------------------------------------------------------------------------------
-두가지 정도가 있다.
+세가지 정도가 있다.
+```
+
+## 17
+```
+Shallow Routing
+
 ```
