@@ -4,6 +4,13 @@ import SubLayout from 'components/SubLayout'
 import styles from '/styles/Home.module.css'
 import { useRouter } from 'next/router'
 
+export async function getServerSideProps() {
+  console.log('server')
+  return {
+    props: { time: new Date().toISOString() },
+  }
+}
+
 export default function MyInfo() {
   const router = useRouter()
 
@@ -17,7 +24,15 @@ export default function MyInfo() {
       <h1 className={styles.title}>Status: {status}</h1>
       <button onClick={()=>{
         alert('edit')
+        setClicked(true)
+        location.replace('/settings/my/info?status=editing')
       }}>edit(replace)</button>
+      <br/>
+      <button onClick={()=>{
+        alert('edit')
+        setClicked(true)
+        router.push('/settings/my/info?status=editing')
+      }}>edit(push)</button>
     </>
   )
 }

@@ -394,4 +394,50 @@ router.push(url, as, {shallow: true}) : 로컬 state 유지 / data fetching x
 ```
 Shallow Routing
 
+setting / my / info.js 파일에
+
+-------------------------------------------------------------------------------
+export async function getServerSideProps() {
+  console.log('server')
+  return {
+    props: { time: new Date().toISOString() },
+  }
+}
+
+...
+
+const router = useRouter()
+
+const [clicked, setClicked] = useState(false)
+const {status = 'initial'} = router.query
+
+return (
+  <>
+    <h1 className={styles.title}>My Info</h1>
+    <h1 className={styles.title}>Clicked: {String(clicked)}</h1>
+    <h1 className={styles.title}>Status: {status}</h1>
+    <button onClick={()=>{
+      alert('edit')
+      setClicked(true)
+      location.replace('/settings/my/info?status=editing')
+    }}>edit(replace)</button>
+  </>
+)
+-------------------------------------------------------------------------------
+코드 추가
+location.replace를 사용해서
+status가 editing으로는 잘 들어가지만 리렌더가 일어나면서 clicked는 다시 false가 되고
+server에 'server' 텍스트가 찍히는 것을 확인할 수 있다.
+`로컬 state 유지 안됨 (리렌더)`
+
+-------------------------------------------------------------------------------
+<button onClick={()=>{
+  alert('edit')
+  setClicked(true)
+  router.push('/settings/my/info?status=editing')
+}}>edit(push)</button>
+-------------------------------------------------------------------------------
+location.replace를 router.push 로 바꾸고 클릭을 하게 되면 clicked가 true가 되는것을 확인할 수 있다.
+하지만 server에 'server' 텍스트가 찍힌다. 
+`로컬 state 유지 / data fetching은 일어남`
 ```
