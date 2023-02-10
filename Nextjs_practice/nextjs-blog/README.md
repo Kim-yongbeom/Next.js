@@ -440,4 +440,10 @@ server에 'server' 텍스트가 찍히는 것을 확인할 수 있다.
 location.replace를 router.push 로 바꾸고 클릭을 하게 되면 clicked가 true가 되는것을 확인할 수 있다.
 하지만 server에 'server' 텍스트가 찍힌다. 
 `로컬 state 유지 / data fetching은 일어남`
+
+-------------------------------------------------------------------------------
+router.push('/settings/my/info?status=editing', undefined, {shallow: true})
+-------------------------------------------------------------------------------
+shallow를 true를 주게 되면
+`로컬 state 유지 / data fetching X`
 ```
