@@ -447,3 +447,9 @@ router.push('/settings/my/info?status=editing', undefined, {shallow: true})
 shallow를 true를 주게 되면
 `로컬 state 유지 / data fetching X`
 ```
+
+## 18
+```
+API Routes
+
+```
