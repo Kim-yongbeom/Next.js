@@ -450,6 +450,36 @@ shallow를 true를 주게 되면
 
 ## 18
 ```
-API Routes
+Next.js가 제공하는 API Routes(pages/api/*)
 
+pages/api/user.js 파일을 만들고
+
+---------------------------------------------
+export default function handler(req, res) {
+    res.status(200).json({
+        name: "Kim"
+    })
+}
+---------------------------------------------
+추가 후에
+
+기존에 있던 [username]/[info].js 파일에 가서
+---------------------------------------------
+  const [name, setName] = useState('?')
+
+  useEffect(()=>{
+    fetch('/api/user')
+    .then((res)=>res.json())
+    .then((data)=>{
+      setName(data.name)
+    })
+  },[])
+
+  ...
+
+  return (
+    <h1 className={styles.title}>Name: {name}</h1>
+  )
+---------------------------------------------
+추가 해준다
 ```
