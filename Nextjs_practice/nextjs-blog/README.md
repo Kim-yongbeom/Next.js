@@ -483,3 +483,27 @@ export default function handler(req, res) {
 ---------------------------------------------
 추가 해준다
 ```
+
+## 19
+```
+src/constants/userDetail.js 파일을 만들어 주고
+userDetail.js 에는 json 형식으로 
+
+---------------------------------------------
+export const userDetail = {
+    name: 'Kim',
+    age: 12,
+    height: '2m',
+    weight: '50g'
+}
+---------------------------------------------
+추가해줌
+
+다시 src/api/user.js로 와서
+
+import {userDetail}  from 'constants/userDetail'
+
+res.status(200).json(userDetail)
+
+기존 json을 userDetail로 변경
+```
