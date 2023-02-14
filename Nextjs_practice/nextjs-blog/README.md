@@ -507,3 +507,42 @@ res.status(200).json(userDetail)
 
 기존 json을 userDetail로 변경
 ```
+
+## 20
+```
+다이나믹 api
+api/user-info/[uid].js
+
+---------------------------------------------
+export default function handler(req, res) {
+    const {uid} = req.query
+    res.status(200).json({uid})
+}
+---------------------------------------------
+추가해줌 
+
+[username]/[info].js 파일로 가서
+---------------------------------------------
+uid query에 추가
+const {username, info, uid} = router.query
+
+useEffect(()=>{
+    if(uid != null){
+      fetch(`/api/user-info/${uid}`)
+    .then((res)=>res.json())
+    .then((data)=>{
+      setName(data.uid)
+    })
+    }
+  },[uid])
+---------------------------------------------
+
+Routing에서 다뤘던 여러 Slug 활용법 적용 가능
+```
+
+## 21
+```
+API Middlewares
+내장 Middleware (req.cookies / req.query ...)
+req/res 관련 다양한 Middleware 기능들을 사용할 수 있다.
+```
