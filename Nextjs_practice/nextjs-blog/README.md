@@ -537,6 +537,9 @@ useEffect(()=>{
   },[uid])
 ---------------------------------------------
 
+http://localhost:3000/kim/name?uid=1
+접속시 1이 붙는 것을 볼 수 있다.
+
 Routing에서 다뤘던 여러 Slug 활용법 적용 가능
 ```
 
@@ -545,4 +548,27 @@ Routing에서 다뤘던 여러 Slug 활용법 적용 가능
 API Middlewares
 내장 Middleware (req.cookies / req.query ...)
 req/res 관련 다양한 Middleware 기능들을 사용할 수 있다.
+
+api/[uid].js에서
+----------------------------------------
+const cookies = req.cookies
+res.status(200).json(`${uid} ${JSON.stringify(cookies)}`)
+----------------------------------------
+
+[info].js에서
+---------------------------------------
+useEffect(()=>{
+    if(uid != null){
+      fetch(`/api/user-info/${uid}`)
+    .then((res)=>res.json())
+    .then((data)=>{
+      console.log(data)
+      setName(data.name)
+    })
+    }
+  },[uid])
+---------------------------------------
+수정해줌
+
+개발자 도구에서 쿠키 설정해 주면 보여짐
 ```

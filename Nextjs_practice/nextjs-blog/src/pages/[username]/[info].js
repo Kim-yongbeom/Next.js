@@ -21,7 +21,8 @@ export default function UsernameInfo() {
       fetch(`/api/user-info/${uid}`)
     .then((res)=>res.json())
     .then((data)=>{
-      setName(data.uid)
+      console.log(data)
+      setName(data.name)
     })
     }
   },[uid])
