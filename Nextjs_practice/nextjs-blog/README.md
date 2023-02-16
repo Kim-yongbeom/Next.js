@@ -547,7 +547,11 @@ Routing에서 다뤘던 여러 Slug 활용법 적용 가능
 ```
 API Middlewares
 내장 Middleware (req.cookies / req.query ...)
-req/res 관련 다양한 Middleware 기능들을 사용할 수 있다.
+req/res 관련 다양한 Middleware 기능들을 사용할 수 있다. CORS (교차 출처 리소스 공유) 이슈에 대응할 수 있는 기능 제공
+- res.status(code)
+- res.json(body): serializable object
+- res.redirect(code, url)
+- res.send(body): string/ object/ Buffer
 
 api/[uid].js에서
 ----------------------------------------
