@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Link from "next/link"
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       </Head>
 
       <main>
+        <Image src="/images/profile.jpg" alt="kim" width={140} height={140} />
         <h1 className={styles.title}>
           Read this post <Link href="/posts/first-post">첫번째 글</Link>
         </h1>
