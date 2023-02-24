@@ -6,6 +6,7 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <div className={styles.container}>
+      {/* meta데이터 넣는 head 태그, nextjs 에서 따로 Head 태그를 제공함 */}
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
