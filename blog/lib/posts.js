@@ -3,7 +3,7 @@ import path from "path"
 import matter from "gray-matter"
 
 // root에 posts 경로를 뜻함 (posts 폴더)
-const postsDirectory = path.join(precess.cwd(), 'posts')
+const postsDirectory = path.join(process.cwd(), 'posts')
 
 export function getSortedPostsData() {
     // file 이름을 가져오는 node 의 라이브러리(fs)
