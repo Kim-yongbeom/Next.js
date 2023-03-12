@@ -4,7 +4,7 @@ import Layout, { siteTitle } from '../components/layout';
 // import { getSortedPostsData } from '../lib/posts';
 import utilStyles from '../styles/utils.module.css';
 
-// ssg
+// ********************* ssg *********************
 // export async function getStaticProps() {
 //   const allPostsData = getSortedPostsData()
 //   return {
@@ -14,7 +14,19 @@ import utilStyles from '../styles/utils.module.css';
 //   }
 // }
 
-// ssr
+// ********************* api 붙이는 ssg *********************
+export async function getStaticProps() {
+  const response = await fetch('/api/posts')
+  const json = await response.json()
+  return {
+    props: {
+      allPostsData: json.allPostsData,
+    }
+  }
+}
+
+//ssg
+// ********************* ssr *********************
 // export async function getServerSideProps() {
 //   const allPostsData = getSortedPostsData()
 //   return {
@@ -26,18 +38,18 @@ import utilStyles from '../styles/utils.module.css';
 
 // csr 일때는 {allPostsData} props 를 빼고
 // ssg, ssr 일때는 {allPostsData} props 를 넣는다
-export default function Home() {
+export default function Home({allPostsData}) {
 
-  // csr
-  const [allPostsData, setAllPostsData] = useState([])
-  useEffect(()=>{
-    fetch('/api/posts')
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(JSON.stringify(data))
-      setAllPostsData(data.allPostsData) 
-    })
-  },[])
+  // ********************* csr *********************
+  // const [allPostsData, setAllPostsData] = useState([])
+  // useEffect(()=>{
+  //   fetch('/api/posts')
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     console.log(JSON.stringify(data))
+  //     setAllPostsData(data.allPostsData) 
+  //   })
+  // },[])
 
   return (
     <Layout home>
