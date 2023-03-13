@@ -16,7 +16,8 @@ import utilStyles from '../styles/utils.module.css';
 
 // ********************* api 붙이는 ssg *********************
 export async function getStaticProps() {
-  const response = await fetch('/api/posts')
+  // getStaticProps 안에서는 절대경로로 해야 함
+  const response = await fetch('http://localhost:3000/api/posts')
   const json = await response.json()
   return {
     props: {
