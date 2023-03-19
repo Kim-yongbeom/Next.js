@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import Layout, { siteTitle } from '../components/layout';
 // import { getSortedPostsData } from '../lib/posts';
 import utilStyles from '../styles/utils.module.css';
+import Link from 'next/link';
+import Date from "../components/Date"
 
 // ********************* ssg *********************
 // export async function getStaticProps() {
@@ -14,9 +16,9 @@ import utilStyles from '../styles/utils.module.css';
 //   }
 // }
 
-// ********************* api 붙이는 ssg *********************
-export async function getStaticProps() {
-  // getStaticProps 안에서는 절대경로로 해야 함
+// ********************* api 붙이는 ssr *********************
+export async function getServerSideProps() {
+  // getServerSideProps 안에서는 절대경로로 해야 함
   const response = await fetch('http://localhost:3000/api/posts')
   const json = await response.json()
   return {
@@ -69,11 +71,13 @@ export default function Home({allPostsData}) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({id, date, title}) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
-              <br />
-              {id}
-              <br />
-              {date}
+              <Link href={`/posts/${id}`}>
+                {title}
+              </Link>
+              <br/>
+              <small className={utilStyles.lightText}>
+                <Date dateString={date}/>
+              </small>
             </li>
           ))}
         </ul>
