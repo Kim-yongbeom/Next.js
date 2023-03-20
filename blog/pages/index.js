@@ -1,29 +1,17 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import Layout, { siteTitle } from '../components/layout';
-// import { getSortedPostsData } from '../lib/posts';
+import { getSortedPostsData } from '../lib/posts';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 import Date from "../components/Date"
 
 // ********************* ssg *********************
-// export async function getStaticProps() {
-//   const allPostsData = getSortedPostsData()
-//   return {
-//     props: {
-//       allPostsData,
-//     }
-//   }
-// }
-
-// ********************* api 붙이는 ssr *********************
-export async function getServerSideProps() {
-  // getServerSideProps 안에서는 절대경로로 해야 함
-  const response = await fetch('http://localhost:3000/api/posts')
-  const json = await response.json()
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData()
   return {
     props: {
-      allPostsData: json.allPostsData,
+      allPostsData,
     }
   }
 }
