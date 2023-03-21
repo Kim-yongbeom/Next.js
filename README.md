@@ -38,4 +38,8 @@ next.js는 주로 세가지 프리렌더링 방법을 제공한다
 - Incremental Static Regeneration: ISR
 
 next.js의 프리렌더링 으로 각 page에 getServerSideProps ,getStaticProps, getStaticPaths 를 사용해서 데이터를 가져옴
+
+server-side에서는 API Routes를 사용하지 않아야 한다.
+getStaticProps / getStaticPaths 등은 client-side 코드에 포함되지 않는다.
+그렇기에 서버 사이드에서는 DB에 직접 접근하는 등 훨씬 자유도 높은 작업을 할 수 있다.
 ```
