@@ -1,17 +1,17 @@
-import Date from '../../components/Date';
+import Date from '../../components/Date'
 import Layout from '../../components/Layout'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 import utilStyles from '../../styles/utils.module.css'
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 
 export async function getStaticPaths() {
   // const paths = getAllPostIds()
-  const paths =  [
+  const paths = [
     {
       params: {
         id: 'ssg-ssr',
-      }
-    }
+      },
+    },
   ]
   return {
     paths,
@@ -22,19 +22,19 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({params}) {
-  const postData = await getPostData(params.id);
+export async function getStaticProps({ params }) {
+  const postData = await getPostData(params.id)
   return {
     props: {
       postData,
-    }
+    },
   }
 }
 
-export default function Post({postData}) {
+export default function Post({ postData }) {
   const router = useRouter()
-  
-  if(router.isFallback) {
+
+  if (router.isFallback) {
     return <div>Loading...</div>
   }
 
@@ -45,7 +45,7 @@ export default function Post({postData}) {
         <div className={utilStyles.lightText}>
           <Date dateString={postData.date} />
         </div>
-        <br/>
+        <br />
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
     </Layout>

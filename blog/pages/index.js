@@ -1,10 +1,10 @@
-import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import Layout, { siteTitle } from '../components/layout';
-import { getSortedPostsData } from '../lib/posts';
-import utilStyles from '../styles/utils.module.css';
-import Link from 'next/link';
-import Date from "../components/Date"
+import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import Layout, { siteTitle } from '../components/Layout'
+import { getSortedPostsData } from '../lib/posts'
+import utilStyles from '../styles/utils.module.css'
+import Link from 'next/link'
+import Date from '../components/Date'
 
 // ********************* ssg *********************
 export async function getStaticProps() {
@@ -12,7 +12,7 @@ export async function getStaticProps() {
   return {
     props: {
       allPostsData,
-    }
+    },
   }
 }
 
@@ -29,8 +29,7 @@ export async function getStaticProps() {
 
 // csr 일때는 {allPostsData} props 를 빼고
 // ssg, ssr 일때는 {allPostsData} props 를 넣는다
-export default function Home({allPostsData}) {
-
+export default function Home({ allPostsData }) {
   // ********************* csr *********************
   // const [allPostsData, setAllPostsData] = useState([])
   // useEffect(()=>{
@@ -38,7 +37,7 @@ export default function Home({allPostsData}) {
   //   .then((res) => res.json())
   //   .then((data) => {
   //     console.log(JSON.stringify(data))
-  //     setAllPostsData(data.allPostsData) 
+  //     setAllPostsData(data.allPostsData)
   //   })
   // },[])
 
@@ -57,19 +56,17 @@ export default function Home({allPostsData}) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({id, date, title}) => (
+          {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                {title}
-              </Link>
-              <br/>
+              <Link href={`/posts/${id}`}>{title}</Link>
+              <br />
               <small className={utilStyles.lightText}>
-                <Date dateString={date}/>
+                <Date dateString={date} />
               </small>
             </li>
           ))}
         </ul>
       </section>
     </Layout>
-  );
+  )
 }
