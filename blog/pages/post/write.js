@@ -1,10 +1,13 @@
-import React, { useRef } from 'react'
+import Link from 'next/link';
+import React, { useRef, useState } from 'react'
 import Layout from '../../components/Layout'
 
 function write() {
   const idRef = useRef(undefined);
   const titleRef = useRef(undefined);
   const contentRef = useRef(undefined);
+
+  const [showLink, setShowLink] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -13,7 +16,7 @@ function write() {
     const title = titleRef.current.value
     const content = contentRef.current.value
 
-    if(id&&title&&content) {
+    if(id && title && content) {
       fetch('/api/post/write', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -21,8 +24,16 @@ function write() {
           id, title, content
         })
       })
-      .then((response) => response.json())
-      .then((data) => alert(JSON.stringify(data)))
+      .then((response) => {if(response.ok) {
+        return response.json()
+      }
+      throw new Error('Fetch Error')
+    })
+      .then((data) => {
+        setShowLink(true)
+        alert(data.message)
+      })
+      .catch((error) => alert(error))
     }
   }
 
@@ -38,6 +49,7 @@ function write() {
         <br/>
         <input type="submit" value="Create" />
       </form>
+      {setShowLink && idRef.current && <Link href={`/posts/${idRef.current.value}`}>Create Post Link</Link>}
     </Layout>
   )
 }
