@@ -4,6 +4,11 @@
 yarn create next-app blog --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
 ```
 
+## blog 현재 문제점
+```
+새로운 블로그를 작성하면 date, matter 문제 발생
+```
+
 ## .md 파일을 해석하기 위해서 도구 설치
 
 ```
@@ -24,3 +29,7 @@ yarn add remark remark-html
 - Blog posts
 - E-commerce product listings
 - Help and documentation (고객센터, 문서)
+
+## vercel로 배포하기
+- vercel과 github 연동
+- github 저장소 import -> Deploy (저장소 이름은 유니크하게 지을것 아니면 랜덤하게 지정될 수 있음)
