@@ -71,9 +71,10 @@ export async function createPost({id,title,date,content}) {
   const data = `---
   title: '${title}'
   date: '${date}'
-  ---
+---
 
-  ${content}`
+${content}
+`
 
   fs.writeFileSync(fullPath, data)
 }
