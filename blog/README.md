@@ -33,3 +33,4 @@ yarn add remark remark-html
 ## vercel로 배포하기
 - vercel과 github 연동
 - github 저장소 import -> Deploy (저장소 이름은 유니크하게 지을것 아니면 랜덤하게 지정될 수 있음)
+- .md 파일을 생성하는 현재 프로젝트에서 제약이 있을 수 있음 (vercel은 read-only)
