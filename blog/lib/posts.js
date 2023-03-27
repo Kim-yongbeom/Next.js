@@ -66,7 +66,7 @@ export async function getPostData(id) {
   }
 }
 
-export async function createPost({id,title,date,content}) {
+export async function createPost({ id, title, date, content }) {
   const fullPath = path.join(postsDirectory, `${id}.md`)
   const data = `---
   title: '${title}'

@@ -54,9 +54,11 @@ export default function Home({ allPostsData }) {
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <h2 className={utilStyles.headingLg}>Blog</h2>
-          <Link href='/post/write' style={{marginTop: '20px'}}>글쓰기</Link>
+          <Link href="/post/write" style={{ marginTop: '20px' }}>
+            글쓰기
+          </Link>
         </div>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
