@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import {serialize} from 'next-mdx-remote/serialize'
 
 // root에 posts 경로를 뜻함 (posts 폴더)
 const postsDirectory = path.join(process.cwd(), 'posts')
@@ -12,7 +13,7 @@ export function getSortedPostsData() {
   const fileNames = fs.readdirSync(postsDirectory)
   const allPostsData = fileNames.map((fileNames) => {
     // .md 라는 텍스트를 지움
-    const id = fileNames.replace(/\.md$/, '')
+    const id = fileNames.replace(/\.md$|\.mdx$/, '')
 
     const fullPath = path.join(postsDirectory, fileNames)
     // 파일 읽어줌
@@ -42,27 +43,45 @@ export function getAllPostIds() {
   return fileNames.map((fileNames) => {
     return {
       params: {
-        id: fileNames.replace(/\.md$/, ''),
+        id: fileNames.replace(/\.md$|\.mdx$/, ''),
       },
     }
   })
 }
 
 export async function getPostData(id) {
-  const fullPath = path.join(postsDirectory, `${id}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const fullMdPath = path.join(postsDirectory, `${id}.md`)
+  const mdExist = fs.existsSync(fullMdPath)
 
-  const matterResult = matter(fileContents)
+  if (mdExist) {
+    const fullPath = path.join(postsDirectory, `${id}.md`)
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
+  
+    const matterResult = matter(fileContents)
+  
+    const processedContent = await remark()
+      .use(html)
+      .process(matterResult.content)
+    const contentHtml = processedContent.toString()
+  
+    return {
+      id,
+      contentHtml,
+      ...matterResult.data,
+    } 
+  } else {
+    const fullPath = path.join(postsDirectory, `${id}.mdx`)
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content)
-  const contentHtml = processedContent.toString()
+    const matterResult = matter(fileContents)
 
-  return {
-    id,
-    contentHtml,
-    ...matterResult.data,
+    const mdxSource = await serialize(matterResult.content)
+
+    return {
+      id,
+      mdxSource,
+      ...matterResult.data,
+    }
   }
 }
 

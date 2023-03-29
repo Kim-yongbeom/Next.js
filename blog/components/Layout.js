@@ -14,7 +14,7 @@ export default function Layout({ children, home }) {
       ? localStorage.getItem('theme') === 'dark'
         ? 'dark'
         : 'light'
-      : 'light'
+      : 'dark'
   )
 
   useEffect(()=>{
