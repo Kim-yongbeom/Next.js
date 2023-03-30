@@ -17,13 +17,13 @@ export default function Layout({ children, home }) {
       : 'dark'
   )
 
-  useEffect(()=>{
-    if(theme === 'dark') {
+  useEffect(() => {
+    if (theme === 'dark') {
       document.querySelector('body').classList.add('dark')
     } else {
       document.querySelector('body').classList.remove('dark')
     }
-  },[theme])
+  }, [theme])
 
   const handleClick = () => {
     const theme = localStorage.getItem('theme')
@@ -37,7 +37,7 @@ export default function Layout({ children, home }) {
   }
 
   return (
-    <div className="bg-white text-gray-800 dark:bg-black dark:text-gray-200 h-screen">
+    <div className="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200 h-screen">
       <div className={styles.container}>
         <Head>
           <link rel="icon" href="/favicon.ico" />
@@ -54,10 +54,7 @@ export default function Layout({ children, home }) {
           <meta name="og:title" content={siteTitle} />
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
-        <button
-          className="w-12 px-2"
-          onClick={handleClick}
-        >
+        <button className="w-12 px-2" onClick={handleClick}>
           {theme === 'dark' ? (
             <img src="/sun.svg" alt="light" />
           ) : (
