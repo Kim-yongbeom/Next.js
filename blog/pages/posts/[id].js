@@ -7,14 +7,14 @@ import { MDXRemote } from 'next-mdx-remote'
 import CodeBlock from '../../components/CodeBlock'
 
 export async function getStaticPaths() {
-  // const paths = getAllPostIds()
-  const paths = [
-    {
-      params: {
-        id: 'ssg-ssr',
-      },
-    },
-  ]
+  const paths = getAllPostIds()
+  // const paths = [
+  //   {
+  //     params: {
+  //       id: 'ssg-ssr',
+  //     },
+  //   },
+  // ]
   return {
     paths,
     // fallback은 url 주소가 잘못 입력될때의 상황을 제어할 수 있는것 같음.
