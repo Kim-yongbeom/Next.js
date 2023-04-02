@@ -20,8 +20,10 @@
     "sharp": "^0.31.3"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^13.2.4",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.37.0",
+    "eslint-plugin-tailwindcss": "^3.10.1",
     "next-sitemap": "^4.0.6",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
