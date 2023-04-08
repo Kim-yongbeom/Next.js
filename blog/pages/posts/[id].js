@@ -5,6 +5,11 @@ import utilStyles from '../../styles/utils.module.css'
 import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
 import CodeBlock from '../../components/CodeBlock'
+import dynamic from 'next/dynamic'
+
+const Button = dynamic(() => import('../../components/Button'), {
+  loading: () => <div>Loading...</div>,
+})
 
 export async function getStaticPaths() {
   const paths = getAllPostIds()
@@ -24,24 +29,14 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, preview }) {
+  console.log(`>>>>>>>> ${preview}`)
   const postData = await getPostData(params.id)
   return {
     props: {
       postData,
     },
   }
-}
-
-const Button = ({ children }) => {
-  return (
-    <button
-      className="bg-slate-700 text-teal-200 dark:bg-white dark:text-teal-700 text-lg rounded-lg px-5"
-      onClick={() => alert(`thanks to ${children}`)}
-    >
-      {children}
-    </button>
-  )
 }
 
 const components = { Button, CodeBlock }

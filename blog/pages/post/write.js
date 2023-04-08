@@ -1,8 +1,19 @@
 import Link from 'next/link'
-import React, { useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useRef, useState } from 'react'
 import Layout from '../../components/Layout'
 
+// 동적인 getServerSideProps가 파일안에 들어가 있으면 build시 js 파일로 가져오고 , 정적인 상태인 경우는 html로 가져온다
+// export async function getServerSideProps() {
+//   return {}
+// }
+
 function write() {
+  const router = useRouter()
+
+  useEffect(() => {
+    console.log(router.query)
+  }, [router.query])
   const idRef = useRef(undefined)
   const titleRef = useRef(undefined)
   const contentRef = useRef(undefined)
