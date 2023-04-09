@@ -1,13 +1,13 @@
-import Date from '../../components/Date'
-import Layout from '../../components/Layout'
+import Date from '@/components/Date'
+import Layout from '@/components/Layout'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 import utilStyles from '../../styles/utils.module.css'
 import { useRouter } from 'next/router'
 import { MDXRemote } from 'next-mdx-remote'
-import CodeBlock from '../../components/CodeBlock'
+import CodeBlock from '@/components/CodeBlock'
 import dynamic from 'next/dynamic'
 
-const Button = dynamic(() => import('../../components/Button'), {
+const Button = dynamic(() => import('@/components/Button'), {
   loading: () => <div>Loading...</div>,
 })
 
