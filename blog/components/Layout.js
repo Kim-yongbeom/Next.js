@@ -56,9 +56,9 @@ export default function Layout({ children, home }) {
         </Head>
         <button className="w-12 px-2" onClick={handleClick}>
           {theme === 'dark' ? (
-            <img src="/sun.svg" alt="light" />
+            <Image src="/sun.svg" alt="light" width={120} height={120} />
           ) : (
-            <img src="/dark-mode.svg" alt="dark" />
+            <Image src="/dark-mode.svg" alt="dark" width={120} height={120} />
           )}
         </button>
         <header className={styles.header}>

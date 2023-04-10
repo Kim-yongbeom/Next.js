@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
-import Layout from '../../components/Layout'
 
 // 동적인 getServerSideProps가 파일안에 들어가 있으면 build시 js 파일로 가져오고 , 정적인 상태인 경우는 html로 가져온다
 // export async function getServerSideProps() {
@@ -52,7 +51,7 @@ function write() {
   }
 
   return (
-    <Layout>
+    <>
       <h1>Write a post</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="id" placeholder="id" required ref={idRef} />
@@ -78,7 +77,7 @@ function write() {
       {setShowLink && idRef.current && (
         <Link href={`/posts/${idRef.current.value}`}>Create Post Link</Link>
       )}
-    </Layout>
+    </>
   )
 }
 
