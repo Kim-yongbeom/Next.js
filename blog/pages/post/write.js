@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
@@ -52,6 +53,9 @@ function write() {
 
   return (
     <>
+    <Head>
+      <title>Write a post</title>
+    </Head>
       <h1>Write a post</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="id" placeholder="id" required ref={idRef} />
