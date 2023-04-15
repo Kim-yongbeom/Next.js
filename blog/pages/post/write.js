@@ -60,6 +60,7 @@ function write() {
       <form onSubmit={handleSubmit}>
         <input type="text" name="id" placeholder="id" required ref={idRef} />
         <br />
+        <br />
         <input
           type="text"
           name="title"
@@ -67,6 +68,7 @@ function write() {
           required
           ref={titleRef}
         />
+        <br />
         <br />
         <textarea
           type="text"
@@ -76,7 +78,7 @@ function write() {
           ref={contentRef}
         />
         <br />
-        <input type="submit" value="Create" />
+        <input className='rounded bg-pink-500 px-3' type="submit" value="Create" />
       </form>
       {setShowLink && idRef.current && (
         <Link href={`/posts/${idRef.current.value}`}>Create Post Link</Link>
