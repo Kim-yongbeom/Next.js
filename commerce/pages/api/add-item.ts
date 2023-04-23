@@ -1,16 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import {Client} from '@notionhq/client'
+import { Client } from '@notionhq/client'
 
 const notion = new Client({
   auth: 'secret_tKgpJgfbzv3p66i35xuIicp9n6SrcpMQpramxi1XRyc'
 })
 
-const databaseId = '63dce21733464284a93b92b8f61fd35c'
+const databaseId = '2871a66787f14742b69503ab696280a4'
 
 async function addItem(name: string) {
   try {
     const response = await notion.pages.create({
-      parent: {database_id: databaseId},
+      parent: { database_id: databaseId },
       properties: {
         title: [
           {
@@ -35,10 +35,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const {name} = req.query
+  const { name } = req.query
 
-  if(name == null) {
-    return res.status(400).json({message: 'No name'})
+  if (name == null) {
+    return res.status(400).json({ message: 'No name' })
   }
 
   try {
