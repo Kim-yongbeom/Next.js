@@ -21,7 +21,7 @@ async function getDetail(pageId: string, propertyId: string) {
 }
 
 type Data = {
-  items?: any
+  detail?: any
   message: string
 }
 
@@ -33,7 +33,7 @@ export default async function handler(
   try {
     const {pageId, propertyId} = req.query
     const response = await getDetail(String(pageId), String(propertyId))
-    res.status(200).json({ items: response, message: `Success` })
+    res.status(200).json({ detail: response, message: `Success` })
   } catch (error) {
     res.status(400).json({ message: `Failed` })
   }
