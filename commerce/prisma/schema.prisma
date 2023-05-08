@@ -22,4 +22,6 @@ model products {
   name String
   image_url String?
   category_id Int
+
+  @@index([category_id])
 }
