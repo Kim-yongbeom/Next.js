@@ -1,11 +1,27 @@
 import { useEffect, useRef, useState } from 'react'
 import { NextPage } from 'next';
 
+type Product = {
+  id: string;
+  properties: {
+    name: {
+      id: string;
+      type: string;
+      name: string;
+      title: { text: { content: string } }[];
+    };
+    price: {
+      id: string;
+    };
+    ["설명"]: {
+      id: string;
+    }
+  };
+};
+
 const Home: NextPage = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [products, setProducts] = useState<{id: string; properties: {
-    id: string; name: {title: {text: {content: string}}[]}
-  }}[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(()=>{
     fetch('/api/get-item')
@@ -28,6 +44,9 @@ const Home: NextPage = () => {
     .then(data => alert(data.message))
   }
 
+  if(products)
+  console.log(products)
+
   return (
     <main className='flex flex-col justify-center items-center'>
       <input ref={inputRef} className='placeholder:italic placeholder:text-slate-400 block text-slate-950 bg-white w-96 border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm' type="text" placeholder='name'/>
@@ -38,16 +57,13 @@ const Home: NextPage = () => {
         <div key={item.id}>
           {JSON.stringify(item.properties.name.title[0].text.content)}
           {item.properties &&
-            Object.entries(item.properties).map(([key, value]) => {
-              const propertyId = typeof value === 'object' ? value.id : '';
-              return (
-                <button className="text-black border border-white bg-slate-500" key={key} onClick={() => {
-                  fetch(`/api/get-detail?pageId=${item.id}&propertyId=${propertyId}`)
-                    .then(res => res.json())
-                    .then(data => alert(JSON.stringify(data.detail)))
-                }}>{key}</button>
-              )
-            })
+            Object.entries(item.properties).map(([key, value]) => (
+              <button className="text-black border border-white bg-slate-500" key={key} onClick={()=>{
+                fetch(`/api/get-detail?pageId=${item.id}&propertyId=${value.id}`)
+                .then(res => res.json())
+                .then(data => alert(JSON.stringify(data.detail)))
+              }}>{key}</button>
+            ))
           }
           <br/>
           <br/>
