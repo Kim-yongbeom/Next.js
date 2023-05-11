@@ -1,3 +1,4 @@
+// prisma는 지운 상태
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {PrismaClient} from '@prisma/client'
 
@@ -23,8 +24,8 @@ export default async function handler(
 ) {
 
   try {
-    const response = await getProducts()
-    res.status(200).json({ items: response, message: `Success` })
+    const products = await getProducts()
+    res.status(200).json({ items: products, message: `Success` })
   } catch (error) {
     res.status(400).json({ message: `Failed` })
   }
