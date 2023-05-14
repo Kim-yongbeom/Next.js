@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@notionhq/client": "^2.2.4",
     "@prisma/client": "^4.14.0",
     "@types/node": "18.15.11",

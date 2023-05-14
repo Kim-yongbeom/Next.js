@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { NextPage } from 'next';
+import { css } from '@emotion/react';
+import Button from '@/components/Button';
 
 type Product = {
   id: string;
@@ -58,11 +60,18 @@ const Home: NextPage = () => {
           {JSON.stringify(item.properties.name.title[0].text.content)}
           {item.properties &&
             Object.entries(item.properties).map(([key, value]) => (
-              <button className="text-black border border-white bg-slate-500" key={key} onClick={()=>{
-                fetch(`/api/get-detail?pageId=${item.id}&propertyId=${value.id}`)
-                .then(res => res.json())
-                .then(data => alert(JSON.stringify(data.detail)))
-              }}>{key}</button>
+              <>
+                <button css={css`
+                  background-color: hotpink; 
+                  padding: 16px; 
+                  border-radius: 8px
+                `} key={key} onClick={()=>{
+                  fetch(`/api/get-detail?pageId=${item.id}&propertyId=${value.id}`)
+                  .then(res => res.json())
+                  .then(data => alert(JSON.stringify(data.detail)))
+                }}>{key}</button>
+                <Button/>
+              </>
             ))
           }
           <br/>
