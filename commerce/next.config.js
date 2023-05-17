@@ -4,6 +4,9 @@ const nextConfig = {
   swcMinify: true,
   compiler: {
     emotion: true,
+  },
+  images: {
+    domains: ['picsum.photos']
   }
 }
 

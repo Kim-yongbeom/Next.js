@@ -1,4 +1,5 @@
 // import ImageGallery from 'react-image-gallery';
+import Image from "next/image";
 import Carousel from "nuka-carousel";
 
 const images = [
@@ -35,8 +36,16 @@ const images = [
 export default function products() {
     // return <ImageGallery items={images} />;
     return(
-        <Carousel>
-            {images.map((item) => <img key={item.original} src={item.original} alt="image" />)}
+        <Carousel animation="fade" autoplay withoutControls wrapAround speed={10}>
+          {images.map((item) => 
+          <Image 
+            key={item.original} 
+            src={item.original} 
+            alt="image" 
+            width={1000} 
+            height={600} 
+            layout="responsive" 
+          />)}
         </Carousel>
     )
 }
