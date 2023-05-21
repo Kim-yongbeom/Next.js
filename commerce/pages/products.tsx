@@ -1,4 +1,5 @@
 // import ImageGallery from 'react-image-gallery';
+import Head from "next/head";
 import Image from "next/image";
 import Carousel from "nuka-carousel";
 import { useState } from "react";
@@ -48,9 +49,26 @@ const images = [
 
 export default function Products() {
   const [index, setIndex] = useState(0);
-    // return <ImageGallery items={images} />;
     return(
       <>
+      <Head>
+        <meta
+          property="og:url"
+          content="http://www."
+        />
+        <meta
+          property="og:title"
+          content="http://www."
+        />   
+        <meta
+          property="og:description"
+          content="http://www."
+        />   
+        <meta
+          property="og:image"
+          content="http://www."
+        />         
+      </Head>
         <Carousel animation="fade" autoplay withoutControls slideIndex={index} wrapAround speed={10}>
           {images.map((item) => 
           <Image 
