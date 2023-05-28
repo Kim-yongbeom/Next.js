@@ -20,10 +20,12 @@ export default function CustomEditor(
   return (
     <Wrapper>
     <Editor
+      readOnly={readOnly}
       editorState={editorState}
-      toolbarClassName="toolbarClassName"
-      wrapperClassName="wrapperClassName"
-      editorClassName="editorClassName"
+      toolbarHidden={readOnly}
+      toolbarClassName="editorToolbar-hidden"
+      wrapperClassName="wrapper-class"
+      editorClassName="editor-class"
       onEditorStateChange={onEditorStateChange}
     />
     {!readOnly && <Button onClick={onSave}>Save</Button>}
