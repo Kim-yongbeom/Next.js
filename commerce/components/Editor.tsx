@@ -26,6 +26,12 @@ export default function CustomEditor(
       toolbarClassName="editorToolbar-hidden"
       wrapperClassName="wrapper-class"
       editorClassName="editor-class"
+      toolbar={{
+        option: ['inline', 'list', 'textAlign', 'link']
+      }}
+      localization={{
+        locale: 'ko'
+      }}
       onEditorStateChange={onEditorStateChange}
     />
     {!readOnly && <Button onClick={onSave}>Save</Button>}

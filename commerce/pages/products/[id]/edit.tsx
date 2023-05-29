@@ -1,7 +1,8 @@
 // import ImageGallery from 'react-image-gallery';
 import CustomEditor from "@/components/Editor";
-import Head from "next/head";
+import { EditorState } from "draft-js";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Carousel from "nuka-carousel";
 import { useState } from "react";
 
@@ -50,6 +51,14 @@ const images = [
 
 export default function Products() {
   const [index, setIndex] = useState(0);
+  const router = useRouter();
+  const {id: productId} = router.query;
+  const [editorState, setEditorState] = useState<EditorState | undefined>(undefined);
+
+  const handleSave = () => {
+    alert('save');
+  }
+
     return(
       <>
         <Carousel animation="fade" autoplay withoutControls slideIndex={index} wrapAround speed={10}>
@@ -68,7 +77,12 @@ export default function Products() {
             <Image src={item.original} alt="image" width={100} height={60}/>
           </div>))}
         </div>
-        <CustomEditor/>
+        {editorState != null && 
+        <CustomEditor 
+          editorState={editorState} 
+          onEditorStateChange={setEditorState}
+          onSave={handleSave}
+        />}
       </>
     )
 }
