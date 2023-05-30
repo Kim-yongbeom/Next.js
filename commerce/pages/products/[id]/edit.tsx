@@ -1,10 +1,10 @@
 // import ImageGallery from 'react-image-gallery';
 import CustomEditor from "@/components/Editor";
-import { EditorState } from "draft-js";
+import { EditorState, convertFromRaw } from "draft-js";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Carousel from "nuka-carousel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const images = [
   {
@@ -54,6 +54,24 @@ export default function Products() {
   const router = useRouter();
   const {id: productId} = router.query;
   const [editorState, setEditorState] = useState<EditorState | undefined>(undefined);
+
+  useEffect(()=>{
+    if(productId !== null){
+      fetch(`/api/get-produc?id=${productId}`)
+      .then(res => res.json())
+      .then(data => {
+        if(data.items.contents) {
+          setEditorState(
+            EditorState.createWithContent(
+              convertFromRaw(JSON.parse(data.items.contents))
+            )
+          )
+        } else {
+          setEditorState(EditorState.createEmpty())
+        }
+      })
+    }
+  },[productId])
 
   const handleSave = () => {
     alert('save');
