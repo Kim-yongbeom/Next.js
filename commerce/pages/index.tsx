@@ -23,18 +23,19 @@ type Product = {
 
 const Home: NextPage = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [products, setProducts] = useState<Product[]>([]);
+  // const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<{id: string; name: string}[]>([]);
 
-  useEffect(()=>{
-    fetch('/api/get-item')
-    .then((res)=>res.json())
-    .then((data)=>setProducts(data.items))
-  },[])
   // useEffect(()=>{
-  //   fetch('/api/get-products')
+  //   fetch('/api/get-item')
   //   .then((res)=>res.json())
   //   .then((data)=>setProducts(data.items))
   // },[])
+  useEffect(()=>{
+    fetch('/api/get-products')
+    .then((res)=>res.json())
+    .then((data)=>setProducts(data.items))
+  },[])
 
   const handleClick = () => {
     if(inputRef.current === null || inputRef.current.value === '') {
@@ -55,7 +56,12 @@ const Home: NextPage = () => {
       <button className="text-black bg-slate-500" onClick={handleClick}>Add Item</button>
       <div>
         <p>Product List</p>
-        {products && products.map((item) => 
+        {
+          products && products.map((item)=>(
+            <div key={item.id}></div>
+          ))
+        }
+        {/* {products && products.map((item) => 
         <div key={item.id}>
           {JSON.stringify(item.properties.name.title[0].text.content)}
           {item.properties &&
@@ -76,7 +82,7 @@ const Home: NextPage = () => {
           }
           <br/>
           <br/>
-        </div>)}
+        </div>)} */}
       </div>
     </main>
   )
