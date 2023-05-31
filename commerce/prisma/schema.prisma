@@ -18,10 +18,12 @@ model categories {
 }
 
 model products {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String
   image_url   String?
   category_id Int
+  contents    String?
+  createdAt   DateTime @default(now())
 
   @@index([category_id])
 }

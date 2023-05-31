@@ -11,7 +11,8 @@ async function getProduct(id: number) {
         id: id,
       }
     })
-    console.log(response)
+    console.log('response', response)
+    return response
   } catch (error) {
     console.error(error)
   }
@@ -29,8 +30,10 @@ export default async function handler(
   const {id} = req.query
   if(id == null) {
     res.status(400).json({message: 'no id'})
+    return
   }
   try {
+    console.log('id',id)
     const products = await getProduct(Number(id))
     res.status(200).json({ items: products, message: `Success` })
   } catch (error) {

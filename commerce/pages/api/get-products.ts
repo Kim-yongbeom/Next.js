@@ -8,6 +8,7 @@ async function getProducts() {
   try {
     const response = await prisma.products.findMany()
     console.log(response)
+    return response
   } catch (error) {
     console.error(error)
   }
@@ -25,7 +26,7 @@ export default async function handler(
 
   try {
     const products = await getProducts()
-    res.status(200).json({ items: products, message: `Success` })
+    res.status(200).json({ items: products, message: `Success!!!!` })
   } catch (error) {
     res.status(400).json({ message: `Failed` })
   }

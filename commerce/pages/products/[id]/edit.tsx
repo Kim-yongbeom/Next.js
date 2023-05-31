@@ -56,10 +56,11 @@ export default function Products() {
   const [editorState, setEditorState] = useState<EditorState | undefined>(undefined);
 
   useEffect(()=>{
-    if(productId !== null){
-      fetch(`/api/get-produc?id=${productId}`)
+    if(productId != null){
+      fetch(`/api/get-product?id=${productId}`)
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         if(data.items.contents) {
           setEditorState(
             EditorState.createWithContent(
@@ -87,7 +88,6 @@ export default function Products() {
             alt="image" 
             width={1000} 
             height={600} 
-            layout="responsive"
           />)}
         </Carousel>
         <div style={{display: 'flex'}}>
