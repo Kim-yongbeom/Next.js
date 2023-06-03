@@ -1,6 +1,6 @@
 // import ImageGallery from 'react-image-gallery';
 import CustomEditor from "@/components/Editor";
-import { EditorState, convertFromRaw } from "draft-js";
+import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Carousel from "nuka-carousel";
@@ -75,7 +75,27 @@ export default function Products() {
   },[productId])
 
   const handleSave = () => {
-    alert('save');
+    if(editorState) {
+      fetch('/api/update-product', {
+        method: 'POST',
+        body: JSON.stringify(
+          { id: productId, contents: JSON.stringify(convertToRaw(editorState.getCurrentContent()))}
+        )
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.items.contents) {
+          setEditorState(
+            EditorState.createWithContent(
+              convertFromRaw(JSON.parse(data.items.contents))
+            )
+          )
+        } else {
+          setEditorState(EditorState.createEmpty())
+        }
+      })
+    }
   }
 
     return(
