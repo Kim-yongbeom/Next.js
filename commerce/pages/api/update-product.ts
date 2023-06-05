@@ -29,7 +29,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const {id, contents} = req.body
+  const {id, contents} = JSON.parse(req.body)
   if(id == null || contents == null) {
     res.status(400).json({message: 'no id or contents'})
   }

@@ -1,8 +1,10 @@
 // import ImageGallery from 'react-image-gallery';
-import Head from "next/head";
+import CustomEditor from "@/components/Editor";
+import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Carousel from "nuka-carousel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const images = [
   {
@@ -49,26 +51,31 @@ const images = [
 
 export default function Products() {
   const [index, setIndex] = useState(0);
+  const router = useRouter();
+  const {id: productId} = router.query;
+  const [editorState, setEditorState] = useState<EditorState | undefined>(undefined);
+
+  useEffect(()=>{
+    if(productId != null){
+      fetch(`/api/get-product?id=${productId}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.items.contents) {
+          setEditorState(
+            EditorState.createWithContent(
+              convertFromRaw(JSON.parse(data.items.contents))
+            )
+          )
+        } else {
+          setEditorState(EditorState.createEmpty())
+        }
+      })
+    }
+  },[productId])
+
     return(
       <>
-      <Head>
-        <meta
-          property="og:url"
-          content="http://www."
-        />
-        <meta
-          property="og:title"
-          content="http://www."
-        />   
-        <meta
-          property="og:description"
-          content="http://www."
-        />   
-        <meta
-          property="og:image"
-          content="http://www."
-        />         
-      </Head>
         <Carousel animation="fade" autoplay withoutControls slideIndex={index} wrapAround speed={10}>
           {images.map((item) => 
           <Image 
@@ -77,7 +84,6 @@ export default function Products() {
             alt="image" 
             width={1000} 
             height={600} 
-            layout="responsive"
           />)}
         </Carousel>
         <div style={{display: 'flex'}}>
@@ -85,6 +91,11 @@ export default function Products() {
             <Image src={item.original} alt="image" width={100} height={60}/>
           </div>))}
         </div>
+        {editorState != null && 
+        <CustomEditor 
+          editorState={editorState} 
+          readOnly
+        />}
       </>
     )
 }

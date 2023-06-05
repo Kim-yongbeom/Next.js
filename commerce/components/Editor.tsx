@@ -14,7 +14,7 @@ const Editor = dynamic<EditorProps>(
 
 export default function CustomEditor(
       {editorState, readOnly = false, onEditorStateChange, onSave}: 
-      {editorState: EditorState, readOnly?: boolean, onEditorStateChange ?: Dispatch<SetStateAction<EditorState | undefined>>, onSave : () => void}
+      {editorState: EditorState, readOnly?: boolean, onEditorStateChange?: Dispatch<SetStateAction<EditorState | undefined>>, onSave ?: () => void}
     ) 
   {
   return (

@@ -84,16 +84,7 @@ export default function Products() {
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
-        if(data.items.contents) {
-          setEditorState(
-            EditorState.createWithContent(
-              convertFromRaw(JSON.parse(data.items.contents))
-            )
-          )
-        } else {
-          setEditorState(EditorState.createEmpty())
-        }
+        alert('Success')
       })
     }
   }
