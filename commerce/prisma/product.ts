@@ -10,12 +10,19 @@ const productData: Prisma.productsCreateInput[] = Array.apply(
     contents: `{"blocks":[{"key":"djnrp","text":"this is a dark jean","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}`,
     category_id: 1,
     image_url: `https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/${(index + 1) % 10 === 0 ? 10 : (index + 1) % 10}.jpg`,
-    price: Math.random() * (100000 - 20000) + 20000,
+    price: Math.floor(Math.random() * (100000 - 20000) + 20000),
 
 }))
 
 async function main() {
-    
+    await prisma.products.deleteMany({})
+
+    for(const p of productData) {
+        const product = await prisma.products.create({
+            data: p
+        })
+        console.log(`Created id: ${product.id}`)
+    }
 }
 
 main()
