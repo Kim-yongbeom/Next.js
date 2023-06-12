@@ -8,12 +8,16 @@ export default function Porducts() {
     const [products, setProducts] = useState<products[]>([]);
 
     useEffect(()=>{
-        fetch(`/api/get-products&skip=0&take=${TAKE}`)
+        fetch(`/api/get-products?skip=0&take=${TAKE}`)
         .then((res)=>res.json())
         .then((data)=>setProducts(data.items))
     },[])
 
   return (
-    <div>Products</div>
+    <div>{products && products.map((item) => {
+      return(<div key={item.id}>
+        {item.name}
+      </div>)
+    })}</div>
   )
 }
