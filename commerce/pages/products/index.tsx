@@ -32,7 +32,15 @@ export default function Porducts() {
           {products.map((item) => {
             return(
               <div key={item.id}>
-                <Image className="rounded" src={item.image_url ?? ''} width={300} height={200} alt={item.name}/>
+                <Image 
+                  className="rounded" 
+                  src={item.image_url ?? ''} 
+                  width={300} 
+                  height={200} 
+                  alt={item.name}
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
+                />
                 <div className="flex">
                   <span>{item.name}</span>
                   <span className="ml-auto">{item.price.toLocaleString('ko-KR')}원</span>
