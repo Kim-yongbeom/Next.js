@@ -1,6 +1,6 @@
 import { products } from "@prisma/client";
 import Image from "next/image";
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 const TAKE = 9
 
@@ -14,6 +14,17 @@ export default function Porducts() {
         .then((data)=>setProducts(data.items))
     },[])
 
+    const getProducts = useCallback(() => {
+      const next = skip + TAKE
+      fetch(`/api/get-products?skip=${next}&take=${TAKE}`)
+        .then((res)=>res.json())
+        .then((data)=>{
+          const list = products.concat(data.items)
+          setProducts(list)
+        })
+        setSkip(next)
+    }, [skip, products])
+
   return (
     <div className="px-36 mt-36 mb-36">
       {products && 
@@ -22,13 +33,17 @@ export default function Porducts() {
             return(
               <div key={item.id}>
                 <Image className="rounded" src={item.image_url ?? ''} width={300} height={200} alt={item.name}/>
-                <span>{item.name}</span>
-                <span>{item.price}원</span>
+                <div className="flex">
+                  <span>{item.name}</span>
+                  <span className="ml-auto">{item.price.toLocaleString('ko-KR')}원</span>
+                </div>
+                <span className="text-zinc-400">{item.category_id === 1 && '의류'}</span>
               </div>)
             })
           }
         </div>
       }
+      <button className="w-full rounded mt-20 bg-zinc-200 p-4 text-black" onClick={getProducts}>더보기</button>
     </div>
   )
 }
