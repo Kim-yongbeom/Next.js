@@ -13,7 +13,7 @@ export default function Porducts() {
     useEffect(()=>{
       fetch('/api/get-products-count')
         .then((res)=>res.json())
-        .then((data)=>setTotal(data.items))
+        .then((data)=>setTotal(Math.ceil(data.items / TAKE)))
         fetch(`/api/get-products?skip=0&take=${TAKE}`)
         .then((res)=>res.json())
         .then((data)=>setProducts(data.items))
@@ -52,7 +52,9 @@ export default function Porducts() {
           }
         </div>
       }
-      <Pagination page={activePage} onChange={setPage} total={total} />
+      <div className="w-full flex mt-5">
+        <Pagination className="m-auto" page={activePage} onChange={setPage} total={total} />
+      </div>
     </div>
   )
 }
