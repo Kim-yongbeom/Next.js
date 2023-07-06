@@ -1,9 +1,8 @@
+import { CATEGORY_MAP, TAKE } from "@/constants/products";
 import { Pagination } from "@mantine/core";
 import { products } from "@prisma/client";
 import Image from "next/image";
 import { useEffect, useState } from "react"
-
-const TAKE = 9
 
 export default function Porducts() {
     const [activePage, setPage] = useState(1);
@@ -46,7 +45,7 @@ export default function Porducts() {
                   <span>{item.name}</span>
                   <span className="ml-auto">{item.price.toLocaleString('ko-KR')}원</span>
                 </div>
-                <span className="text-zinc-400">{item.category_id === 1 && '의류'}</span>
+                <span className="text-zinc-400">{CATEGORY_MAP[item.category_id - 1]}</span>
               </div>)
             })
           }
