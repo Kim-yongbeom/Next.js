@@ -1,4 +1,4 @@
-import { TAKE } from "@/constants/products";
+import { CATEGORY_MAP, TAKE } from "@/constants/products";
 import { products } from "@prisma/client";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react"
@@ -30,12 +30,12 @@ export default function Porducts() {
         <div className="grid grid-cols-3 gap-5">
           {products.map((item) => {
             return(
-              <div key={item.id}>
+              <div key={item.id} style={{maxWidth: 310}}>
                 <Image 
                   className="rounded" 
                   src={item.image_url ?? ''} 
-                  width={300} 
-                  height={200} 
+                  width={310} 
+                  height={390} 
                   alt={item.name}
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
@@ -44,7 +44,7 @@ export default function Porducts() {
                   <span>{item.name}</span>
                   <span className="ml-auto">{item.price.toLocaleString('ko-KR')}원</span>
                 </div>
-                <span className="text-zinc-400">{item.category_id === 1 && '의류'}</span>
+                <span className="text-zinc-400">{CATEGORY_MAP[item.category_id - 1]}</span>
               </div>)
             })
           }
