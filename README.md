@@ -47,4 +47,4 @@ getStaticProps / getStaticPaths 등은 client-side 코드에 포함되지 않는
 -------------------------------------------------------------------------------------------------------------------------------------------------
 ## Next.js 쓰면서 생긴 문제점 (아직 해결못함)
 - 토큰을 localStorage에 저장하고 만료되면 로그인 페이지로 리다이랙트 시킬려고 했는데 localStorage로 토큰을 저장하면 next.config.js에서 가져올 수 없다... 쿠키로 바꿔야 할 듯 (https://break-your-limit.tistory.com/77)
-- 미들웨어 사용해서 리다이랙트 시켜보기(https://junheedot.tistory.com/entry/Nextjs-middleware-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%97%B0%EB%8F%99%ED%95%98%EA%B8%B0)
+- 미들웨어 사용해서 리다이랙트 시켜보기(https://velog.io/@hwisaac/NextJS-Middleware)
