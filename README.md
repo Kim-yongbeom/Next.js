@@ -48,3 +48,4 @@ getStaticProps / getStaticPaths 등은 client-side 코드에 포함되지 않는
 ## Next.js 쓰면서 생긴 문제점 (아직 해결못함)
 - 토큰을 localStorage에 저장하고 만료되면 로그인 페이지로 리다이랙트 시킬려고 했는데 localStorage로 토큰을 저장하면 next.config.js에서 가져올 수 없다... 쿠키로 바꿔야 할 듯 (https://break-your-limit.tistory.com/77)
 - 미들웨어 사용해서 리다이랙트 시켜보기(https://velog.io/@hwisaac/NextJS-Middleware) (https://programming119.tistory.com/254)
+- 현재 13.4.1 버전에서는 미들웨어를 사용하려면 root 폴더에 middleware.ts를 만들고 build 후 start를 해야함 아무래도 서버를 사용하는건 build를 해야하는것 같다.?
