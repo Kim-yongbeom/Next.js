@@ -1,6 +1,6 @@
 ## Next.js 프로젝트 띄워보기
 
-- node 설치
+- node 설치 (진행한 버전은 v16.17.1)
 - yarn 설치 (npm install -g yarn)
 - npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
 
@@ -8,7 +8,21 @@
 
 ```
 .prettierignore
+에는
+node_modules
+.next
+public
+추가
+
 .prettierrc
+에는
+{
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false
+}
+추가
 
 추가 후
 
