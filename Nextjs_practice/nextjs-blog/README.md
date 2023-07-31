@@ -2,7 +2,11 @@
 
 - node 설치 (진행한 버전은 v16.17.1)
 - yarn 설치 (npm install -g yarn)
-- npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
+- npx create-next-app [프로젝트명]
+
+  
+![캡처](https://github.com/Kim-yongbeom/Next.js/assets/89058117/2ed887ea-eb2c-49c0-a3ba-33fd4676a936)
+  
 
 ## prettier 설정
 
