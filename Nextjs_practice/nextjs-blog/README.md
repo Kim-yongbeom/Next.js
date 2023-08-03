@@ -45,9 +45,9 @@ yarn prettier-fix 입력하면 파일들 정렬!!
 index.js 에서 main 태그 안 내용은 <h1>만 남김
 -------------------------------------------------------
 <main>
-<h1 className={styles.title}>
-    Welcome to the <a href="https://nextjs.org">Next.js!</a>
-</h1>
+  <h1>
+      Welcome to the <a href="https://nextjs.org">Next.js!</a>
+  </h1>
 </main>
 -------------------------------------------------------
 ```
@@ -78,6 +78,12 @@ export async function getServerSideProps(){
 ```
 export default function Home()에 {time} props 넣어준뒤
 
+ts 로 만들었다면
+type Time = {
+  time: string
+}
+을 넣어주고 props로 전달해야함
+
 main 태그 내용을 바꿔줌
 새로고침을 할 때마다 터미널에 server 스트링이 찍힘
 -------------------------------------------------------
@@ -92,8 +98,13 @@ main 태그 내용을 바꿔줌
 ## 4
 
 ```
-Link는 next에서 routing 제공해주는 태그
-파일만 만들어도 route가 설정됨
+<Link>는 HTML <a> 요소를 확장하여 경로 간 프리페칭 및 클라이언트 측 탐색을 제공하는 React 구성 요소이다.
+Next.js에서 경로 사이를 탐색하는 기본 방법이다.
+프리페칭은 사용자가 방문하기 전에 백그라운드에서 경로를 미리 로드하는 방법입니다.
+
+프리페칭 방법 두가지
+- <Link>component : 사용자의 뷰포트에 표시될 때 자동으로 미리 가져온다. 프리페칭은 페이지가 처음 로드되거나 스크롤을 통해 표시될 때 발생한다.
+- router.prefetch(): useRouter후크를 사용하여 프로그래밍 방식으로 경로를 미리 가져올 수 있습니다.
 -------------------------------------------------------
 import Link from "next/link"
 
@@ -114,10 +125,25 @@ import Link from "next/link"
 ## 5
 
 ```
-CSR을 만드는 것은 일반 React와 똑같이 만들면 된다.
+csr.tsx
+-------------------------------------------------------
+import { useEffect } from "react"
 
-index.js를 복사해서 같은 경로에 붙여넣은 후 csr.js로 rename
-getServerSideProps 함수를 삭제 해준다.
+export default function Csr() { 
+  useEffect(() => {
+    console.log('csr 페이지')
+  },[])
+
+  return (
+    <h1>
+      CSR 페이지
+    </h1>
+  )
+}
+-------------------------------------------------------
+
+csr.tsx 파일을 만들면 index.tsx 의 Link 컴포넌트에서 프리페칭을 사용해 csr.tsx 파일을 미리 불러온다.
+Sources 탭 또는 Network 탭에서 확인할 수 있다.
 ```
 
 ## SSG (Static-Site Generation)
