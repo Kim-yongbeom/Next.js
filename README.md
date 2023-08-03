@@ -1,3 +1,7 @@
+보고 정리하기
+- https://parkgang.github.io/blog/2021/09/07/lets-properly-understand-and-use-the-ssg-of-nextjs/
+- https://doooodle932.tistory.com/114
+  
 # Next.js
 - 대표적인 SSR(서버 사이드 랜더링) React 프레임워크
 - SEO(Search Engine Optimization)를 위한 SSR(Server-Side Rendering)을 가능하게 함
