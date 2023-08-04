@@ -1,7 +1,3 @@
-보고 정리하기
-- https://parkgang.github.io/blog/2021/09/07/lets-properly-understand-and-use-the-ssg-of-nextjs/
-- https://doooodle932.tistory.com/114
-  
 # Next.js
 - 대표적인 SSR(서버 사이드 랜더링) React 프레임워크
 - SEO(Search Engine Optimization)를 위한 SSR(Server-Side Rendering)을 가능하게 함
@@ -10,6 +6,7 @@
 - 특히 Next.js에서는 모든 페이지를 기본적으로 프리렌더링 함(기존 MPA와는 다른 랜더링을 가짐)
 - SSR 뿐만 아니라 정적 사이트 생성 SSG(Static-Site Generate)도 가능함
 - SSR과 CSR도 혼합하여 사용 가능
+- next.js에서 말하는 SSR도 사실 하나 뿐인 SPA으로 동작하지만 empty html의 SPA 형태가 아닌 Server Side에서 미리 가공된 html을 가지고 SPA으로 동작합니다.
 
 ## SPA vs MPA
 ```
@@ -49,8 +46,7 @@ getStaticProps / getStaticPaths 등은 client-side 코드에 포함되지 않는
 ```
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
-## Next.js 쓰면서 생긴 문제점 (아직 해결못함)
-- 토큰을 localStorage에 저장하고 만료되면 로그인 페이지로 리다이랙트 시킬려고 했는데 localStorage로 토큰을 저장하면 next.config.js에서 가져올 수 없다... 쿠키로 바꿔야 할 듯 (https://break-your-limit.tistory.com/77)
-- 미들웨어 사용해서 리다이랙트 시켜보기(https://velog.io/@hwisaac/NextJS-Middleware) (https://programming119.tistory.com/254)
+## Next.js 미들웨어 사용
+- 토큰을 localStorage에 저장하고 만료되면 로그인 페이지로 리다이랙트 시킬려고 했는데 localStorage로 토큰을 저장하면 미들웨어에서 가져올 수 없다... 쿠키로 바꿔야 함 (미들웨어를 사용해서 쿠키를 가져오고 리다이랙트 시킴)
 - 현재 13.4.1 버전에서는 미들웨어를 사용하려면 root 폴더에 middleware.ts를 만들고 build 후 start를 해야함 아무래도 서버를 사용하는건 build를 해야하는것 같다.?
-- 굳이 미들웨어 쓰지말고 (https://careerly.co.kr/qnas/3049) 이 방법으로 한번 해보기
+- middleware 의 위치에 따라 동작하는것이 달라짐 root는 전부 middleware를 거친다
