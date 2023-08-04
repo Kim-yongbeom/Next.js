@@ -6,7 +6,7 @@
 - 특히 Next.js에서는 모든 페이지를 기본적으로 프리렌더링 함(기존 MPA와는 다른 랜더링을 가짐)
 - SSR 뿐만 아니라 정적 사이트 생성 SSG(Static-Site Generate)도 가능함
 - SSR과 CSR도 혼합하여 사용 가능
-- next.js에서 말하는 SSR도 사실 하나 뿐인 SPA으로 동작하지만 empty html의 SPA 형태가 아닌 Server Side에서 미리 가공된 html을 가지고 SPA으로 동작합니다.
+- next.js에서 말하는 SSR도 사실 하나 뿐인 SPA으로 동작하지만 empty html의 SPA 형태가 아닌 Server Side에서 미리 가공된 html을 가지고 SPA으로 동작함
 
 ## SPA vs MPA
 ```
