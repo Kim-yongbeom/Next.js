@@ -116,6 +116,8 @@ import Link from "next/link"
     <Link href="/csr">CSR 로</Link>
     <br/>
     <Link href="/ssg">SSG 로</Link>
+    <br/>
+    <Link href="/isr">ISR 로</Link>
   </h1>
 </main>
 -------------------------------------------------------
@@ -210,6 +212,29 @@ isr.js 파일을 만들고 routing 설정한 후에 yarn build 후 yarn start �
 만약 revalidate: 1 이면 1초 간격으로 다시 패칭한다는 뜻이다.
 
 SSG의 장점과 SSR의 장점을 적절하게 사용할 수 있다.
+
+isr.tsx
+-------------------------------------------------------
+export async function getStaticProps() {
+    console.log('server')
+    return {
+        props: { time: new Date().toISOString() },
+        revalidate: 1,
+    }
+}
+
+type Time = {
+    time: string
+}
+
+export default function ISR({ time }: Time) {
+    return (
+        <>
+            <h1>{time}</h1>
+        </>
+    )
+}
+-------------------------------------------------------
 ```
 
 ## Layouts
