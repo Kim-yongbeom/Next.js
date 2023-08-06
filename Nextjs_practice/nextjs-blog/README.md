@@ -131,17 +131,20 @@ import Link from "next/link"
 ```
 csr.tsx
 -------------------------------------------------------
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
-export default function Csr() { 
+export default function CSR() {
+  const [time, setTime] = useState<string>()
+
   useEffect(() => {
-    console.log('csr 페이지')
-  },[])
+    console.log('client')
+    setTime(new Date().toISOString())
+  }, [])
 
   return (
-    <h1>
-      CSR 페이지
-    </h1>
+    <>
+      <h1>{time}</h1>
+    </>
   )
 }
 -------------------------------------------------------
@@ -169,6 +172,7 @@ dev 서버에서는 SSG가 SSR 처럼 동작함
 
 빌드 했을 때 시간을 SSG 페이지에서 나타나게 됨
 
+ssg.tsx
 -------------------------------------------------------
 export async function getStaticProps() {
   console.log('static server')
