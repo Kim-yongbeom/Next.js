@@ -88,7 +88,7 @@ main 태그 내용을 바꿔줌
 새로고침을 할 때마다 터미널에 server 스트링이 찍힘
 -------------------------------------------------------
 <main>
-<h1 className={styles.title}>
+<h1>
     {time}
 </h1>
 </main>
@@ -109,10 +109,14 @@ Next.js에서 경로 사이를 탐색하는 기본 방법이다.
 import Link from "next/link"
 
 <main>
-    <h1 className={styles.title}>
-      {time}
-    </h1>
-    <h1><Link href="/csr">CSR 로</Link></h1>
+  <h1>
+    {time}
+  </h1>
+  <h1>
+    <Link href="/csr">CSR 로</Link>
+    <br/>
+    <Link href="/ssg">SSG 로</Link>
+  </h1>
 </main>
 -------------------------------------------------------
 ```
@@ -159,11 +163,32 @@ SSG를 구현할 때 정적인 페이지에 동적 라우팅을 사용하려면 
 - Page Paths 까지 외부 데이터에 의존적인 상황 (getStaticPaths도 함께 활용해야 가능)
 
 SSG는 yarn dev 즉 개발서버에서는 동작하지 않는다.
-SSG가 SSR 처럼 동작함
+dev 서버에서는 SSG가 SSR 처럼 동작함
 
-그래서 ssg.js 파일을 만들고 routing 설정한 후에 yarn build 후 yarn start 해야함
+그래서 ssg.js 파일을 만들고 routing 설정한 후에 빌드 후 실행 해야함
 
-yarn build 했을 때 시간을 SSG 페이지에서 그려둔다.
+빌드 했을 때 시간을 SSG 페이지에서 나타나게 됨
+
+-------------------------------------------------------
+export async function getStaticProps() {
+  console.log('static server')
+  return {
+    props: { time: new Date().toISOString() },
+  }
+}
+
+type Time = {
+  time: string
+}
+
+export default function SSG({ time }: Time) {
+  return (
+    <>
+      <h1>{time}</h1>
+    </>
+  )
+}
+-------------------------------------------------------
 ```
 
 ## ISR (Incremental Static Regeneration)
