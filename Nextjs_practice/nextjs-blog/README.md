@@ -40,9 +40,107 @@ yarn prettier-fix 입력하면 파일들 정렬!!
 ```
 
 ## 1
+styles 폴더에
+Home.module.css 추가 후
 
 ```
-index.js 에서 main 태그 안 내용은 <h1>만 남김
+-------------------------------------------------------
+.container {
+  min-height: 100%;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0 0 1rem;
+  line-height: 1.15;
+  font-size: 3.6rem;
+}
+
+.title {
+  text-align: center;
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+.description {
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  max-width: 800px;
+  margin-top: 3rem;
+}
+
+.card {
+  margin: 1rem;
+  flex-basis: 45%;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.logo {
+  height: 1em;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+```
+-------------------------------------------------------
+
+
+```
+index.tsx 에서 main 태그 안 내용은 <h1>만 남김
 -------------------------------------------------------
 <main>
   <h1>
@@ -245,11 +343,98 @@ export default function ISR({ time }: Time) {
 ## 8
 
 ```
-root에서 components 폴더 -> Layout.js 생성 (pages 가 아니라 components 라서 SSR 불가능)
+root에서 components 폴더 -> Layout.tsx 생성 (pages 가 아니라 components 라서 SSR 불가능)
 
-Layout.js 에서는 children을 props로 받아준다
+Layout.tsx 에서는 children을 props로 받아준다
 
-pages 폴더에서 _app.js 파일 생성 후
+Layout.tsx
+-------------------------------------------------------
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
+import { ReactNode } from 'react'
+
+type Props = {
+  children: ReactNode
+}
+
+export default function Layout({ children }: Props) {
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>Next.js 연습</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main>{children}</main>
+
+      <footer>
+        <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <img src="/favicon.ico" alt="Vercel" className={styles.logo} />
+        </a>
+      </footer>
+
+      <style jsx>{`
+        main {
+          padding: 5rem 0;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        footer {
+          width: 100%;
+          height: 100px;
+          border-top: 1px solid #eaeaea;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        footer img {
+          margin-left: 0.5rem;
+        }
+        footer a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+          color: inherit;
+        }
+        code {
+          background: #fafafa;
+          border-radius: 5px;
+          padding: 0.75rem;
+          font-size: 1.1rem;
+          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+      `}</style>
+
+      <style jsx global>{`
+        html,
+        body {
+          padding: 0;
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+            sans-serif;
+        }
+        * {
+          box-sizing: border-box;
+        }
+      `}</style>
+    </div>
+  )
+}
+-------------------------------------------------------
+추가해줌
+
+pages 폴더에 _app.tsx 파일
 -------------------------------------------------------
 import Layout from "../components/Layout";
 
@@ -261,177 +446,35 @@ export default function App({Component, pageProps}) {
     )
 }
 -------------------------------------------------------
-코드를 작성하고 yarn dev를 사용해 페이지를 들어가게 되면 footer가 2개가 된다.
-현재 공통된 부분을 지워주지 않아서 그러므로
-
-index.js에서
-
-<h1></h1> 태그 부분만 남기고 모두 제거
 ```
-
-## SubLayout
-
-- 세부적인 레이아웃을 쓰는 경우 사용
 
 ## 9
-
-```
-components 폴더 안에 SubLayout.js를 만든다
--------------------------------------------------------
-import Link from 'next/link'
-import styles from '../styles/Home.module.css';
-
-export default function SubLayout({children}) {
-  return (
-    <div>
-      <h1>
-        <Link href="/">
-          Home으로
-        </Link>
-      </h1>
-      {children}
-    </div>
-  )
-}
--------------------------------------------------------
-코드 작성 후
-
-SubLayout을 적용해 주고 싶은 파일(여기선 csr.js)에
-
-csr.js의 함수명이 CSR이므로
--------------------------------------------------------
-CSR.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      <SubLayout>{page}</SubLayout>
-    </Layout>
-  )
-}
--------------------------------------------------------
-적용
-
-그리고
-
-_app.js에서 컴포넌트가 getLayout을 가지고 있는것에만 실행하겠다는 뜻으로
------------------------------------------------------------------------
-// return(
-//     <Layout>
-//         <Component  {...pageProps}/>
-//     </Layout>
-// )
-const getLayout = Component.getLayout || ((page)=><Layout>{page}</Layout>)
-return getLayout(<Component{...pageProps}/>)
------------------------------------------------------------------------
-기존 코드를 주석하고 const getLayout을 추가해준다.
-
-ssg.js, isr.js 에도 그대로 적용
-```
-
-## 10
-
-```
-Next.js 의 라우팅은 file-system기반(pages/ 혹은 src/pages/  다른 폴더는 안됨)
-
-root 폴더에 src 를 만들고 components폴더 pages폴더를 붙여넣는다 (기존에 했던 경로들 수정해야함)
-
-만약 1. root폴더에 pages 폴더에 index.js가 있고
-     2. root폴더에 src 폴더에 pages 폴더에 index.js 가 동시에 있다면
-
-     1번 항목이 실행이 되는것을 확인할 수 있다. 그리고 2번의 src 폴더의 pages는 404에러가 난다.
-
-연습 단계에서는 src 폴더의 pages를 사용한다. (각자 편할걸로 사용해라)
-```
-
-## 11
-```
-pages 폴더 안에 product 폴더를 생성 -> first-item.js 생성
-
--------------------------------------------------------
-import { useEffect, useState } from 'react'
-import Layout from '../../components/Layout'
-import SubLayout from '../../components/SubLayout'
-import styles from '../../../styles/Home.module.css'
-
-export default function FirstItem() {
-
-  return (
-    <>
-      <h1 className={styles.title}>First Item</h1>
-    </>
-  )
-}
-
-FirstItem.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      <SubLayout>{page}</SubLayout>
-    </Layout>
-  )
-}
--------------------------------------------------------
-코드 입력
-
-만약 경로 설정이 귀찮다면
-root 폴더에 jsconfig.json 파일을 만들어 준 뒤
--------------------------------------------------------
-{
-    "compilerOptions": {
-        "baseUrl": "src"
-    }
-}
--------------------------------------------------------
-를 넣게 되면 
-
-FirstItem 컴포넌트의 경로 코드
--------------------------------------------------------
-import Layout from 'components/Layout'
-import SubLayout from 'components/SubLayout'
-import styles from '/styles/Home.module.css'
--------------------------------------------------------
-src가 루트가 되어 바로 설정할 수 있게 된다.
-styles 폴더는 src 밖에 있어 '/' 추가. (왜 / 만 붙이면 되는지는 잘 모르겠다. 같은 경로면 ./ 해야 하는것 아닌가???)
-```
-
-## 12
-```
-pages 폴더 안에 settings 폴더를 생성 -> my 폴더 생성 -> info.js 생성
-first-item.js 와 똑같은 코드 작성 -> 컴포넌트 이름만 변경
-
-웹에서 확인하고 싶다면 
-http://localhost:3000/settings/my/info 파일 경로를 넣으면 된다.
-
-http://localhost:3000/settings
-http://localhost:3000/settings/my 
-위 두개의 경로에 접근하고 싶다면 settings 폴더나 my 폴더에 index.js를 추가해줘야 함
-```
-
-## 13
 ```
 Dynamic Routes
 
-pages 폴더 안에 [slug].js를 만들게 되면 설정한 폴더명 뒤에는 아무런 값을 넣어줘도 [slug].js가 보여진다.
+pages 폴더 안에 [slug].tsx를 만들게 되면 설정한 폴더명 뒤에는 아무런 값을 넣어줘도 [slug].tsx가 보여진다.
 
-설정한 폴더명이란 만약 category 폴더 안에 [slug].js를 만들고 http://localhost:3000/category/asfasfasf
-이런 url을 입력을 해도 [slug].js 를 보여준다.
+설정한 폴더명이란 만약 category 폴더 안에 [slug].tsx를 만들고 http://localhost:3000/category/asfasfasf
+이런 url을 입력을 해도 [slug].tsx 를 보여준다.
 
 파일에만 해당되는 것이 아니라 폴더에도 사용이 가능하다.
 [username] 이라는 폴더를 만들고 ( []안에는 어떠한 텍스트를 넣어도 되지만 유의미한 텍스트를 넣는게 당연히 좋다 )
-info.js 파일을 만들게 되면
+info.tsx 파일을 만들게 되면
 http://localhost:3000/KIM/info 처럼 자유롭게 사용 가능하다.
 
 만약 category폴더와 [username] 폴더가 동시에 존재 하고
-http://localhost:3000/category/info 를 입력하게 되면 category 폴더의 [slug].js 파일이 보여진다. ( 명시된 폴더가 우선순위 )
+http://localhost:3000/category/info 를 입력하게 되면 category 폴더의 [slug].tsx 파일이 보여진다. ( 명시된 폴더가 우선순위 )
 
 
-cart 폴더 안에 [...date].js 를 생성하면
+cart 폴더 안에 [...date].tsx 를 생성하면
 
 http://localhost:3000/cart/asd/131234
-url 처럼 cart 후에 어떠한 경로를 입력하더라도 [...date].js 가 보여지게 된다.
+url 처럼 cart 후에 어떠한 경로를 입력하더라도 [...date].tsx 가 보여지게 된다.
 ```
 
-## 14
+## 10
 ```
-[slug].js 파일 안에
+[slug].tsx 파일 안에
 
 -------------------------------------------
 import { useRouter } from 'next/router'
@@ -439,6 +482,7 @@ const router = useRouter()
 const {slug} = router.query
 -------------------------------------------
 위 코드를 입력하면 slug 파일의 text값(url 정보)을 가져올 수 있다.
+무조건 router.query로 가져오는 값은 파일 이름을 동일하게 가져와야한다
 
 http://localhost:3000/category/foodasfa?from=asd&age=123
 만약 위 url 의 slug 값과 query 값을 가져오고 싶다면
@@ -450,21 +494,10 @@ age == 123
 가 나올 것 이다.
 ```
 
-## 15
-```
-[username] 폴더 안에 info.js 파일을 [info.js]로 바꿔보자
-
--------------------------------------------
-const router = useRouter()
-const {username, info} = router.query
--------------------------------------------
-역시나 아무런 텍스트를 입력해도 잘 받아온다.
-```
-
-## 16
+## 11
 ```
 [...slug]에서 slug 는 배열로 받아진다.
-[...date].js 파일에서 확인 가능하다.
+[...date].tsx 파일에서 확인 가능하다.
 
 -------------------------------------------------------------------------------
 const {date} = router.query
@@ -474,10 +507,10 @@ const {date} = router.query
 </>
 -------------------------------------------------------------------------------
 
-만약 cart폴더의 [...date].js 파일이 존재할 때 
+만약 cart폴더의 [...date].tsx 파일이 존재할 때 
 http://localhost:3000/cart 로 접속하게 되면 404 에러가 발생한다. (...date에 해당하는 값이 존재하지 않기 때문)
 
-이를 해결 하기 위해선 [[...date]].js 로 []를 한번더 감싸 주어야 한다.
+이를 해결 하기 위해선 [[...date]].tsx 로 []를 한번더 감싸 주어야 한다.
 
 routing 하는 방법
 -------------------------------------------------------------------------------
@@ -486,64 +519,6 @@ router.push(url) : 로컬 state 유지 / data fetching은 일어남
 router.push(url, as, {shallow: true}) : 로컬 state 유지 / data fetching x
 -------------------------------------------------------------------------------
 세가지 정도가 있다.
-```
-
-## 17
-```
-Shallow Routing
-
-setting / my / info.js 파일에
-
--------------------------------------------------------------------------------
-export async function getServerSideProps() {
-  console.log('server')
-  return {
-    props: { time: new Date().toISOString() },
-  }
-}
-
-...
-
-const router = useRouter()
-
-const [clicked, setClicked] = useState(false)
-const {status = 'initial'} = router.query
-
-return (
-  <>
-    <h1 className={styles.title}>My Info</h1>
-    <h1 className={styles.title}>Clicked: {String(clicked)}</h1>
-    <h1 className={styles.title}>Status: {status}</h1>
-    <button onClick={()=>{
-      alert('edit')
-      setClicked(true)
-      location.replace('/settings/my/info?status=editing')
-    }}>edit(replace)</button>
-  </>
-)
--------------------------------------------------------------------------------
-코드 추가
-location.replace를 사용해서
-status가 editing으로는 잘 들어가지만 리렌더가 일어나면서 clicked는 다시 false가 되고
-server에 'server' 텍스트가 찍히는 것을 확인할 수 있다.
-`로컬 state 유지 안됨 (리렌더)`
-
--------------------------------------------------------------------------------
-<button onClick={()=>{
-  alert('edit')
-  setClicked(true)
-  router.push('/settings/my/info?status=editing')
-}}>edit(push)</button>
--------------------------------------------------------------------------------
-location.replace를 router.push 로 바꾸고 클릭을 하게 되면 clicked가 true가 되는것을 확인할 수 있다.
-하지만 server에 'server' 텍스트가 찍힌다. 
-`로컬 state 유지 / data fetching은 일어남`
-
--------------------------------------------------------------------------------
-router.push('/settings/my/info?status=editing', undefined, {shallow: true})
--------------------------------------------------------------------------------
-shallow를 true를 주게 되면
-`로컬 state 유지 / data fetching X`
 ```
 
 ## 18
@@ -691,3 +666,6 @@ res.redirect(307, '/api/user')
 추가해주면 
 user-info/[uid] api를 호출하고 다시 user api를 호출한다.
 ```
+
+## 23 
+- 미들웨어
