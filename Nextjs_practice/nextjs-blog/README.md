@@ -521,22 +521,30 @@ router.push(url, as, {shallow: true}) : 로컬 state 유지 / data fetching x
 세가지 정도가 있다.
 ```
 
-## 18
+## 12
 ```
 Next.js가 제공하는 API Routes(pages/api/*)
 
-pages/api/user.js 파일을 만들고
+pages/api/user.ts 파일을 만들고
 
 ---------------------------------------------
-export default function handler(req, res) {
-    res.status(200).json({
-        name: "Kim"
-    })
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+type Data = {
+  name: string
 }
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
+  res.status(200).json({ name: 'Kim' })
+}
+
 ---------------------------------------------
 추가 후에
 
-기존에 있던 [username]/[info].js 파일에 가서
+pages 폴더에서 apiTest.tsx 파일을 만들고
 ---------------------------------------------
   const [name, setName] = useState('?')
 
@@ -555,30 +563,6 @@ export default function handler(req, res) {
   )
 ---------------------------------------------
 추가 해준다
-```
-
-## 19
-```
-src/constants/userDetail.js 파일을 만들어 주고
-userDetail.js 에는 json 형식으로 
-
----------------------------------------------
-export const userDetail = {
-    name: 'Kim',
-    age: 12,
-    height: '2m',
-    weight: '50g'
-}
----------------------------------------------
-추가해줌
-
-다시 src/api/user.js로 와서
-
-import {userDetail}  from 'constants/userDetail'
-
-res.status(200).json(userDetail)
-
-기존 json을 userDetail로 변경
 ```
 
 ## 20
@@ -666,6 +650,3 @@ res.redirect(307, '/api/user')
 추가해주면 
 user-info/[uid] api를 호출하고 다시 user api를 호출한다.
 ```
-
-## 23 
-- 미들웨어
