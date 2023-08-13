@@ -568,4 +568,66 @@ pages 폴더에서 apiTest.tsx 파일을 만들고
 추가 해준다
 ```
 
-## 13
+## 13 미들웨어
+- 현재 13.4.1 버전에서는 미들웨어를 사용하려면 root 폴더에 middleware.ts를 만들고 build 후 start를 해야함 (버전에 따라 middleware의 위치와 이름이 달라짐)
+- 미들웨어의 저장 경로에 따라 실행되는 동작이 다름
+- https://nextjs.org/docs/app/building-your-application/routing/middleware
+
+```
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+import { thisEndYear, threeMonthsAgo } from './components/thisYear'
+
+// This function can be marked `async` if using `await` inside
+export function middleware(request: NextRequest) {
+  let cookie = request.cookies.get('loginToken')?.value
+  let companyName = request.cookies.get('companyName')?.value
+
+  if (
+    request.nextUrl.pathname.startsWith('/login') &&
+    cookie &&
+    companyName === '인포플라'
+  ) {
+    return NextResponse.redirect(
+      new URL(
+        `/?option=전체&page=1&startedDate=${threeMonthsAgo()}&endedDate=${thisEndYear()}`,
+        request.url
+      )
+    )
+  } else if (
+    request.nextUrl.pathname.startsWith('/login') &&
+    cookie &&
+    companyName !== '인포플라'
+  ) {
+    return NextResponse.redirect(
+      new URL(
+        `/?page=1&startedDate=${threeMonthsAgo()}&endedDate=${thisEndYear()}`,
+        request.url
+      )
+    )
+  } else if (!request.nextUrl.pathname.startsWith('/login') && !cookie) {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
+
+  if (
+    request.nextUrl.pathname.startsWith('/company') &&
+    companyName !== '인포플라'
+  ) {
+    return NextResponse.redirect(
+      new URL(
+        `/?page=1&startedDate=${threeMonthsAgo()}&endedDate=${thisEndYear()}`,
+        request.url
+      )
+    )
+  }
+}
+
+// See "Matching Paths" below to learn more
+export const config = {
+  matcher: [
+    //  * 다음으로 시작하는 경로를 제외한 모든 요청 경로를 일치시킵니다.
+    '/((?!api|_next/static|_next/image|assets|favicon.ico|logo.png|sw.js).*)',
+  ],
+}
+
+```
