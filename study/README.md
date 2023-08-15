@@ -43,7 +43,6 @@ styles 폴더에
 Home.module.css 추가 후
 
 ```
--------------------------------------------------------
 .container {
   min-height: 100%;
   padding: 0 0.5rem;
