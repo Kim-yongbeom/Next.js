@@ -148,10 +148,6 @@ index.tsx 에서 main 태그 안 내용은 <h1>만 남김
 -------------------------------------------------------
 ```
 
-## Routing
-- next.js 에서 라우팅 처리는 pages 폴더 안에 파일만 넣어주면 알아서 처리해 줌
-- pages 폴더에 isr.tsx, csr.tsx, ssg.tsx 파일을 만들어 준다.
-
 ## SSR(server side rendering)
 
 - 서버에서 데이터를 가져오고 화면에 그려준다.
@@ -221,6 +217,10 @@ import Link from "next/link"
   </h1>
 </main>
 -------------------------------------------------------
+
+Routing
+- next.js 에서 라우팅 처리는 pages 폴더 안에 파일만 넣어주면 알아서 처리해 줌
+- pages 폴더에 isr.tsx, csr.tsx, ssg.tsx 파일을 만들어 준다.
 ```
 
 ## CSR (Client Side rendering)
