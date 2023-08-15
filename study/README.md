@@ -156,11 +156,26 @@ type Time = {
 main 태그 내용을 바꿔줌
 새로고침을 할 때마다 터미널에 server 스트링이 찍힘
 -------------------------------------------------------
-<main>
-<h1>
-    {time}
-</h1>
-</main>
+export async function getServerSideProps(){
+  console.log('server')
+  return {
+    props: {time: new Date().toISOString()}
+  }
+}
+
+type Time = {
+  time: string
+}
+
+export default function Home({time}: Time) {
+  return (
+    <main>
+      <h1>
+        {time}
+      </h1>
+    </main>
+  )
+}
 -------------------------------------------------------
 ```
 
