@@ -160,12 +160,16 @@ getServerSidePrps 를 사용해서 SSR을 구현한다.
 - 컴포넌트에 data를 props로 전달하여 렌더링 할 수 있다
 - getServerSideProps 는 계속 데이터가 바뀌어야하는 페이지의 경우 사용한다
 -------------------------------------------------------
+index.tsx 에
+
 export async function getServerSideProps(){
   console.log('server')
   return {
     props: {time: new Date().toISOString()}
   }
 }
+
+추가
 -------------------------------------------------------
 ```
 
