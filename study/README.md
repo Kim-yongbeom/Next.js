@@ -6,37 +6,6 @@
 
 ![캡처](https://github.com/Kim-yongbeom/Next.js/assets/89058117/2ed887ea-eb2c-49c0-a3ba-33fd4676a936)
 
-## prettier 설정
-
-```
-.prettierignore
-에는
-node_modules
-.next
-public
-추가
-
-.prettierrc
-에는
-{
-  "semi": false,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "useTabs": false
-}
-추가
-
-추가 후
-
-package.json 에 "prettier-fix": "prettier --write ."
-
-추가 후
-
-터미널에 yarn add -D prettier
-
-yarn prettier-fix 입력하면 파일들 정렬!!
-```
-
 ## 1
 
 styles 폴더에
