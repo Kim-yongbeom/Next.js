@@ -6,6 +6,10 @@
 
 ![캡처](https://github.com/Kim-yongbeom/Next.js/assets/89058117/2ed887ea-eb2c-49c0-a3ba-33fd4676a936)
 
+- 프로젝트 개발 버전 실행: npm run dev
+- 프로젝트 빌드: npm run build
+- 프로젝트 빌드 버전 실행: npm run start
+
 ## 1
 
 styles 폴더에
