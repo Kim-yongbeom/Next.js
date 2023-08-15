@@ -35,7 +35,7 @@ MPA는 페이지를 이동할 때 마다 서버에 요청하고 받아오는 방
 next.js는 주로 세가지 프리렌더링 방법을 제공한다
 
 - Server Side Rendering: SSR (요청 타임에 프리 랜더를 해서 접근 할 때마다 서버에 요청을 보내게 됨)
-- Static Site Rendering: SSG (*권장함* 빌드 타임에 프리 렌더를 해서 서버 부하가 덜 함)
+- Static Site Generate: SSG (*권장함* 빌드 타임에 프리 렌더를 해서 서버 부하가 덜 함)
 - Incremental Static Regeneration: ISR
 
 next.js의 프리렌더링 으로 각 page에 getServerSideProps ,getStaticProps, getStaticPaths 를 사용해서 데이터를 가져옴
