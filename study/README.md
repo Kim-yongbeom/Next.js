@@ -563,7 +563,54 @@ pages 폴더에서 apiTest.tsx 파일을 만들고
 추가 해준다
 ```
 
-## 13 미들웨어
+## 13
+```
+next.js 에서 지원하는 Image
+
+Pages 폴더 안에 Image.tsx 생성
+---------------------------------------------
+import Image from "next/image";
+
+export default function image() {
+  return (
+    <div>
+        <Image
+            alt="Next.js logo"
+            src="https://cdn.aitimes.kr/news/photo/202303/27617_41603_044.jpg" (구글에서 가져온 이미지)
+            width={1200}
+            height={400}
+            style={{
+            maxWidth: '100%',
+            height: 'auto',
+            }}
+        />
+    </div>
+  )
+}
+---------------------------------------------
+
+src에 입력한 이미지 도메인을 next.config.js 에 추가 해줘야 함
+---------------------------------------------
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    domains: ['cdn.aitimes.kr'], // 이미지를 가져올 수 있는 호스트 이름을 여기에 추가
+  },
+}
+
+module.exports = nextConfig
+---------------------------------------------
+```
+- 장점
+```
+- lazy loading (로딩 안된 이미지는 블러 처리)
+- 이미지 사이즈 최적화
+- 레이아웃 안정성 (이미지 로드 전에 placeholder를 제공해서 CLS(Cumulative Layout Shift) 방지)
+```
+
+## 14
+```미들웨어```
 - 현재 13.4.1 버전에서는 미들웨어를 사용하려면 root 폴더에 middleware.ts를 만들고 build 후 start를 해야함 (버전에 따라 middleware의 위치와 이름이 달라짐)
 - 미들웨어의 저장 경로에 따라 실행되는 동작이 다름
 - https://nextjs.org/docs/app/building-your-application/routing/middleware
