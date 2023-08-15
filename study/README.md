@@ -196,6 +196,8 @@ Next.js에서 경로 사이를 탐색하는 기본 방법이다.
 -------------------------------------------------------
 import Link from "next/link"
 
+...
+
 <main>
   <h1>
     {time}
@@ -259,10 +261,8 @@ SSG를 구현할 때 정적인 페이지에 동적 라우팅을 사용하려면 
 - Page의 내용물이 외부 데이터에 의존적인 상황 (getStaticProps만 가지고도 가능)
 - Page Paths 까지 외부 데이터에 의존적인 상황 (getStaticPaths도 함께 활용해야 가능)
 
-SSG는 yarn dev 즉 개발서버에서는 동작하지 않는다.
+SSG는 npm run dev 즉 개발서버에서는 동작하지 않는다.
 dev 서버에서는 SSG가 SSR 처럼 동작함
-
-그래서 ssg.js 파일을 만들고 routing 설정한 후에 빌드 후 실행 해야함
 
 빌드 했을 때 시간을 SSG 페이지에서 나타나게 됨
 
