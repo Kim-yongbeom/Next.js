@@ -430,15 +430,37 @@ export default function Layout({ children }: Props) {
 
 pages 폴더에 _app.tsx 파일
 -------------------------------------------------------
-import Layout from "../components/Layout";
+import Layout from '@/components/Layout'
+import '@/styles/globals.css'
+import { NextComponentType } from 'next'
+import type { AppProps } from 'next/app'
+import { ReactNode } from 'react'
+import ISR from './isr'
 
-export default function App({Component, pageProps}) {
-    return(
-        <Layout>
-            <Component  {...pageProps}/>
-        </Layout>
-    )
+type GetLayoutFunc = (page: ReactNode) => JSX.Element
+
+type NextComponentWithLayout = NextComponentType & {
+  getLayout?: GetLayoutFunc
 }
+
+
+export default function App({ Component, pageProps }: AppProps) {
+  const ComponentWithLayout = Component as NextComponentWithLayout
+  const getLayout: GetLayoutFunc =
+    ComponentWithLayout.getLayout || ((page) => <Layout>{page}</Layout>)
+
+  
+  return (
+    <>
+      {Component === ISR ? (
+        <Component {...pageProps} />
+      ) : (
+        getLayout(<Component {...pageProps} />)
+      )}
+    </>
+  )
+}
+
 -------------------------------------------------------
 ```
 
